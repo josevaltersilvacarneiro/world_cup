@@ -71,7 +71,7 @@ char
 	}
 	else {
 		do {
-			amount_of_letters_team_name = get_string(team_name);
+			amount_of_letters_team_name = get_string(team_name, "Type the team name: ");
 
 			for (
 				team_ptr = teams->next;
