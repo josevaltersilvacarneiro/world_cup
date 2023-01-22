@@ -35,7 +35,7 @@ regist(TEAM *teams, GAME *games)
 
 	switch (option) {
 		case 't':
-			regist_teams(team);
+			regist_teams(teams);
 			break;
 		case 'g':
 			break;
