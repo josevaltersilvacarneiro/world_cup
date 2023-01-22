@@ -30,6 +30,28 @@ struct game {
 typedef struct game GAME;
 
 void
+regist(GROUP *cup[], GAME *games)
+{
+	char options[2];
+	char option;
+
+	printf("1 → Register teams\n");
+	options[0] = 't';
+
+	printf("2 → Register games\n");
+	options[1] = 'g';
+
+	option = get_option(options, 2);
+
+	switch (option) {
+		case 't':
+			break;
+		case 'g':
+			break;
+	}
+}
+
+void
 print_teams(GROUP *cup[], GAME *games)
 {
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
@@ -77,6 +99,7 @@ main(int argc, char *argv[])
 		switch (option) {
 			case 'r':
 				printf("Registering...\n");
+				regist(cup, games);
 				break;
 			case 'e':
 				printf("Editing...\n");
