@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <string.h>
 
+unsigned int
+get_string(char *string, const char *message)
+{
+	unsigned int amount_of_letters = 0;
+	char letter;
+
+	printf("%s", message);
+	for (; letter != '\n' && amount_of_letters < MAXIMUM_STRING_LENGTH; amount_of_letters++) {
+		scanf("%c" &letter);
+		string[i] = letter;
+	}
+	string[amount_of_letters] = '\0';
+
+	return amount_of_letters;
+}
+
 char
 get_option(const char options[], unsigned int amount_of_options)
 {
