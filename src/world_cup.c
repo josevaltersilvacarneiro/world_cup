@@ -4,33 +4,12 @@
 
 #include "util.h"
 
-#define AMOUNT_OF_OPTIONS 8
-#define AMOUNT_OF_GROUPS  32
-
-struct team {
-	char *name;
-	struct team *next;
-};
-
-typedef struct team TEAM;
-
-struct group {
-	char name;
-	TEAM *teams;
-};
-
-typedef struct group GROUP;
-
-struct game {
-	TEAM *team_one;
-	TEAM *team_two;
-	struct game *next;
-};
-
-typedef struct game GAME;
+#ifndef config_h
+#include "config.h"
+#endif /* config_h */
 
 void
-regist(GROUP *cup[], GAME *games)
+regist(TEAM *teams, GAME *games)
 {
 	char options[2];
 	char option;
@@ -52,27 +31,26 @@ regist(GROUP *cup[], GAME *games)
 }
 
 void
-print_teams(GROUP *cup[], GAME *games)
+print_teams(TEAM *teams, GAME *games)
 {
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
-		printf("%c\n", cup[i]->name);
-		for (TEAM *p = cup[i]->teams->next; p->next != NULL; p = p->next)
-			printf("%s\n", p->name);
+		printf("%c\n", groups[i]);
+
+		for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+			if (team_ptr->group == groups[i])
+				printf("%s\n", team_ptr->name);
 	}
 }
 
 int
 main(int argc, char *argv[])
 {
-	bool  quit;
-	GROUP *cup[AMOUNT_OF_GROUPS];
-	GAME  *games;
+	bool quit;
+	TEAM *teams;
+	GAME *games;
 
-	for (register int group = 0; group < AMOUNT_OF_GROUPS; group++) {
-		cup[group]		= (GROUP *) malloc(sizeof(GROUP));
-		cup[group]->teams	= (TEAM  *) malloc(sizeof(TEAM));
-		cup[group]->teams->next = NULL;
-	}
+	teams = (TEAM *) malloc(sizeof(TEAM));
+	teams->next = NULL;
 
 	games = (GAME *) malloc(sizeof(GAME));
 	games->next = NULL;
@@ -99,7 +77,7 @@ main(int argc, char *argv[])
 		switch (option) {
 			case 'r':
 				printf("Registering...\n");
-				regist(cup, games);
+				regist(teams, games);
 				break;
 			case 'e':
 				printf("Editing...\n");
@@ -120,19 +98,17 @@ main(int argc, char *argv[])
 		}
 	} while (!quit);
 
+	/*
 	for (GAME *p = games->next; p != NULL; p = p->next) {
 		free(p->team_one);
 		free(p->team_two);
-	}
-	
-	for (register int group = 0; group < AMOUNT_OF_GROUPS; group++) {
-		for (TEAM *p = cup[group]->teams->next; p != NULL; p = p->next)
-			free(p->name);
-		free(cup[group]->teams);
-		free(cup[group]);
-	}
+	}*/
+
+	for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+		free(team_ptr->name);
 	
 	free(games);
+	free(teams);
 
 	return 0;
 }
