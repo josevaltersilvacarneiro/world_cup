@@ -37,3 +37,36 @@ get_group(groups)
 
 	return group;
 }
+
+char
+*get_team(TEAM *teams, bool must_be, char group)
+{
+	TEAM *team_ptr;
+	char team_name[MAXIMUM_STRING_LENGTH];
+
+	if (must_be) {
+
+	}
+	else {
+		do {
+			team_name = get_string(team_name);
+
+			for (
+				team_ptr = teams->next;
+				team_ptr != NULL || strcmp(team_ptr->name, team_name);
+				team_ptr = teams->next
+			    ) ;
+		} while (team_ptr != NULL);
+
+		teams = realloc(sizeof(TEAM)); /* See the main function in world_cup.c */
+		team_ptr->next = (team_ptr + 1);
+
+		team_ptr++;
+
+		team_ptr->group = group;
+		team_ptr->name = team_name;
+		team_ptr->next = NULL;
+	}
+
+	return team_ptr->name;
+}
