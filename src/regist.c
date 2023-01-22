@@ -5,11 +5,14 @@
 #include "config.h"
 #endif
 
+extern char groups[];
+
 extern char get_group(char groups[]);
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
 extern char *get_team(TEAM *teams, bool must_be, char group);
 
-extern char groups[];
+extern unsigned int number_of_teams_to_register(TEAM *teams);
+extern unsigned int get_amount(const char *message);
 
 void
 regist_team(TEAM *teams)
@@ -24,4 +27,21 @@ regist_team(TEAM *teams)
 	}
 
 	get_team(teams, false, group);
+}
+
+void
+regist_teams(TEAM *teams)
+{
+	unsigned int max_amount, amount_of_teams;
+	
+	max_amount = number_of_teams_to_register(teams);
+
+	amount_of_teams = get_amount("Number of teams: ");
+	while (amount_of_teams > max_amount) {
+		printf("Only %u teams left to register\n", max_amount);
+		amount_of_teams = get_amount("Number of teams: ");
+	}
+
+	while (amount_of_teams-- > 0)
+		regist_team(teams);
 }
