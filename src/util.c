@@ -58,6 +58,7 @@ get_group(groups)
 char
 *get_team(TEAM *teams, bool must_be, char group)
 {
+	unsigned int amount_of_letters_team_name;
 	TEAM *team_ptr;
 	char team_name[MAXIMUM_STRING_LENGTH];
 
@@ -66,7 +67,7 @@ char
 	}
 	else {
 		do {
-			team_name = get_string(team_name);
+			amount_of_letters_team_name = get_string(team_name);
 
 			for (
 				team_ptr = teams->next;
@@ -81,7 +82,10 @@ char
 		team_ptr++;
 
 		team_ptr->group = group;
-		team_ptr->name = team_name;
+
+		team_ptr->name = malloc(amount_of_letters * sizeof(char) + 1);
+		strcpy(team_pt->name, team_name);
+		
 		team_ptr->next = NULL;
 	}
 
