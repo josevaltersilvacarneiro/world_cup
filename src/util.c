@@ -18,7 +18,7 @@ get_string(char *string, const char *message)
 			register int i = 0;
 			letter != '\n' && amount_of_letters < MAXIMUM_STRING_LENGTH;
 			amount_of_letters++, i++) {
-		scanf("%c" &letter);
+		scanf("%c", &letter);
 		string[i] = letter;
 	}
 	string[amount_of_letters] = '\0';
