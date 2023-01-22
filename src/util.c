@@ -92,7 +92,7 @@ char
 
 		team_ptr->group = group;
 
-		team_ptr->name = malloc(amount_of_letters * sizeof(char) + 1);
+		team_ptr->name = malloc(amount_of_letters_team_name * sizeof(char) + 1);
 		strcpy(team_ptr->name, team_name);
 		
 		team_ptr->next = NULL;
