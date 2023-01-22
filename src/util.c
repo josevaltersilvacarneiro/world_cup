@@ -26,6 +26,17 @@ get_string(char *string, const char *message)
 	return amount_of_letters;
 }
 
+unsigned int
+get_amount(const char *message)
+{
+	unsigned int amount;
+	
+	printf(message);
+	scanf("%u", &amount);
+
+	return amount;
+}
+
 char
 get_option(const char options[], unsigned int amount_of_options)
 {
@@ -111,4 +122,24 @@ get_amount_of_registered_teams(TEAM *teams, char group)
 			amount_of_registered_teams++;
 
 	return amount_of_registered_teams;
+}
+
+unsigned int
+number_of_teams_registered(TEAM *teams)
+{
+	unsigned int number_of_teams_registered = 0;
+
+	for (
+			TEAM *team_ptr = teams->next;
+			team_ptr != NULL;
+			team_ptr = team_ptr->next, number_of_teams_registered++
+	   ) ;
+
+	return number_of_teams_registered;
+}
+
+unsigned int
+number_of_teams_to_register(TEAM *teams)
+{
+	return AMOUNT_OF_GROUPS * 4 - number_of_teams_registered(teams);
 }
