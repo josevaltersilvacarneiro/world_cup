@@ -9,6 +9,8 @@ extern char get_group(char groups[]);
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
 extern char *get_team(TEAM *teams, bool must_be, char group);
 
+extern char groups[];
+
 void
 regist_team(TEAM *teams)
 {
