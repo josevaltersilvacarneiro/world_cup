@@ -29,6 +29,16 @@ struct game {
 
 typedef struct game GAME;
 
+void
+print_teams(GROUP *cup[], GAME *games)
+{
+	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
+		printf("%c\n", cup[i]->name);
+		for (TEAM *p = cup[i]->teams->next; p->next != NULL; p = p->next)
+			printf("%s\n", p->name);
+	}
+}
+
 int
 main(int argc, char *argv[])
 {
