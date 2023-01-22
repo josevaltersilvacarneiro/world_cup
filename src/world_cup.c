@@ -50,12 +50,17 @@ main(int argc, char *argv[])
 		char options[AMOUNT_OF_OPTIONS];
 		char option;
 
-		options[5] = 'p';
-		options[6] = 'w';
-		options[7] = 'c';
-
 		printf("1 → Register\n");
 		options[0] = 'r';
+		
+		printf("6 → Show the teams\n");
+		options[5] = 'p';
+
+		printf("7 → Exit without saving changes\n");
+		options[6] = 'w';
+
+		printf("8 → Exit and save changes\n");
+		options[7] = 'c';
 
 		option = get_option(options, AMOUNT_OF_OPTIONS);
 
