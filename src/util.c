@@ -91,3 +91,15 @@ char
 
 	return team_ptr->name;
 }
+
+unsigned int
+get_amount_of_registered_teams(TEAM *teams, char group)
+{
+	unsigned int amount_of_registered_teams = 0;
+
+	for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+		if (team_ptr->group == group)
+			amount_of_registered_teams++;
+
+	return amount_of_registered_teams;
+}
