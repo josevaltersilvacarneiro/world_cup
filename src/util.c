@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifndef config_h
+#include "config.h"
+#endif
+
 unsigned int
 get_string(char *string, const char *message)
 {
