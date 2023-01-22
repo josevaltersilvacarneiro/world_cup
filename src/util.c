@@ -85,7 +85,7 @@ char
 			    ) ;
 		} while (team_ptr != NULL);
 
-		teams = realloc(sizeof(TEAM)); /* See the main function in world_cup.c */
+		teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
 		team_ptr->next = (team_ptr + 1);
 
 		team_ptr++;
