@@ -43,7 +43,7 @@ get_option(const char options[], unsigned int amount_of_options)
 }
 
 char
-get_group(groups)
+get_group(char groups[])
 {
 	char group;
 	bool found;
