@@ -8,6 +8,17 @@
 #include "config.h"
 #endif /* config_h */
 
+char groups[] = {
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+};
+
 void
 regist(TEAM *teams, GAME *games)
 {
