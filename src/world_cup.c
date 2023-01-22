@@ -90,6 +90,7 @@ main(int argc, char *argv[])
 	for (register int group = 0; group < AMOUNT_OF_GROUPS; group++) {
 		for (TEAM *p = cup[group]->teams->next; p != NULL; p = p->next)
 			free(p->name);
+		free(cup[group]->teams);
 		free(cup[group]);
 	}
 	
