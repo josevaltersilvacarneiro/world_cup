@@ -19,6 +19,8 @@ char groups[] = {
         'H',
 };
 
+extern void regist_teams(TEAM *teams);
+
 void
 regist(TEAM *teams, GAME *games)
 {
