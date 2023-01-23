@@ -103,6 +103,7 @@ main(int argc, char *argv[])
 			case 'n':
 				break;
 			case 'p':
+				print_teams(teams, games);
 				break;
 			case 'w':
 				break;
