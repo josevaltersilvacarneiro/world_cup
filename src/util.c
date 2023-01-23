@@ -14,7 +14,7 @@ get_string(char *string, const char *message)
 	char letter;
 
 	printf(message);
-	scanf("\n"); /* Clean the buffer */
+	scanf("%*c");
 	for (register int i = 0; letter != '\n'; i++) {
 		scanf("%c", &letter);
 		*(string + i) = letter;
