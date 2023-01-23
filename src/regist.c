@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #ifndef config_h
@@ -42,6 +43,8 @@ regist_teams(TEAM *teams)
 		amount_of_teams = get_amount("Number of teams: ");
 	}
 
-	while (amount_of_teams-- > 0)
+	while (amount_of_teams-- > 0) {
+		teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
 		regist_team(teams);
+	}
 }

@@ -90,16 +90,14 @@ char
 		do {
 			amount_of_letters_team_name = get_string(team_name, "Type the team name: ");
 
-			for (
-					TEAM *team_ptr = teams->next;
-					team_ptr != NULL;
-					team_ptr = teams->next, last_team_ptr = team_ptr
-			    ) if (!strcmp(team_ptr->name, team_name)) break;
+			for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next) {
+				if (!strcmp(team_ptr->name, team_name))
+					break;
+				last_team_ptr = team_ptr;
+			}
 
 		} while (last_team_ptr->next != NULL);
 
-		teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
-		
 		last_team_ptr->next = (last_team_ptr + 1);
 		
 		last_team_ptr++;
