@@ -17,10 +17,11 @@ get_string(char *string, const char *message)
 	scanf("\n"); /* Clean the buffer */
 	for (register int i = 0; letter != '\n'; i++) {
 		scanf("%c", &letter);
-		string[i] = letter;
+		*(string + i) = letter;
 
 		amount_of_letters++;
 	}
+	amount_of_letters--;
 	string[amount_of_letters] = '\0';
 
 	return amount_of_letters;
@@ -91,7 +92,7 @@ char
 
 			for (
 				team_ptr = teams->next;
-				team_ptr != NULL || strcmp(team_ptr->name, team_name);
+				team_ptr != NULL && !strcmp(team_ptr->name, team_name);
 				team_ptr = teams->next
 			    ) ;
 		} while (team_ptr != NULL);
