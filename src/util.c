@@ -13,13 +13,13 @@ get_string(char *string, const char *message)
 	unsigned int amount_of_letters = 0;
 	char letter;
 
-	printf("%s", message);
-	for (
-			register int i = 0;
-			letter != '\n' && amount_of_letters < MAXIMUM_STRING_LENGTH;
-			amount_of_letters++, i++) {
+	printf(message);
+	scanf("\n"); /* Clean the buffer */
+	for (register int i = 0; letter != '\n'; i++) {
 		scanf("%c", &letter);
 		string[i] = letter;
+
+		amount_of_letters++;
 	}
 	string[amount_of_letters] = '\0';
 
