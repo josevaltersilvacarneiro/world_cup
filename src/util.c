@@ -80,7 +80,7 @@ char
 *get_team(TEAM *teams, bool must_be, char group)
 {
 	unsigned int amount_of_letters_team_name;
-	TEAM *team_ptr;
+	TEAM *last_team_ptr = teams;
 	char team_name[MAXIMUM_STRING_LENGTH];
 
 	if (must_be) {
@@ -90,27 +90,27 @@ char
 		do {
 			amount_of_letters_team_name = get_string(team_name, "Type the team name: ");
 
-			for (team_ptr = teams->next; team_ptr != NULL; team_ptr = teams->next)
-				if (!strcmp(team_ptr->name, team_name))
-					break;
+			for (
+					TEAM *team_ptr = teams->next;
+					team_ptr != NULL;
+					team_ptr = teams->next, last_team_ptr = team_ptr
+			    ) if (!strcmp(team_ptr->name, team_name)) break;
 
-		} while (team_ptr != NULL);
+		} while (last_team_ptr->next != NULL);
 
-		printf("Hello, world!\n");
 		teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
-		team_ptr->next = (team_ptr + 1);
-
-		team_ptr++;
-
-		team_ptr->group = group;
-
-		team_ptr->name = malloc(amount_of_letters_team_name * sizeof(char) + 1);
-		strcpy(team_ptr->name, team_name);
 		
-		team_ptr->next = NULL;
+		last_team_ptr->next = (last_team_ptr + 1);
+		
+		last_team_ptr++;
+
+		last_team_ptr->next = NULL;
+		last_team_ptr->group = group;
+		last_team_ptr->name = malloc(amount_of_letters_team_name * sizeof(char) + 1);
+		strcpy(last_team_ptr->name, team_name);
 	}
 
-	return team_ptr->name;
+	return last_team_ptr->name;
 }
 
 unsigned int
