@@ -3,7 +3,7 @@
 #define MAXIMUM_STRING_LENGTH 2024
 
 #define AMOUNT_OF_OPTIONS 8
-#define AMOUNT_OF_GROUPS  32
+#define AMOUNT_OF_GROUPS  8
 
 struct team {
 	char group;
