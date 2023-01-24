@@ -119,8 +119,8 @@ main(int argc, char *argv[])
 		free(p->team_two);
 	}*/
 
-	for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
-		free(team_ptr->name);
+	/*for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+		free(team_ptr->name);*/
 	
 	free(games);
 	free(teams);

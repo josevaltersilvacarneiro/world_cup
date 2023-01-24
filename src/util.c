@@ -98,13 +98,13 @@ char
 
 		} while (last_team_ptr->next != NULL);
 
-		last_team_ptr->next = (last_team_ptr + 1);
-		
-		last_team_ptr++;
+		last_team_ptr->next = (last_team_ptr + 1);	/* pointing to the last position */
+		last_team_ptr = last_team_ptr->next;		/* going to a last position	 */
 
 		last_team_ptr->next = NULL;
+
 		last_team_ptr->group = group;
-		last_team_ptr->name = malloc((amount_of_letters_team_name + 1) * sizeof(char));
+		//last_team_ptr->name = malloc((amount_of_letters_team_name + 1) * sizeof(char));
 		strcpy(last_team_ptr->name, team_name);
 	}
 
