@@ -7,7 +7,7 @@
 
 struct team {
 	char group;
-        char *name;
+        char name[80];
         struct team *next;
 };
 
