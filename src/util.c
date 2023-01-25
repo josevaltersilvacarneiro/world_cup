@@ -84,6 +84,19 @@ get_group(char groups[])
 }
 
 char
+get_group_with_registered_teams(TEAM *teams, char groups[])
+{
+	char group;
+
+	for (;;) {
+		group = get_group(groups);
+
+		if (get_amount_of_registered_teams(teams, group) > 1)
+			return group;
+	}
+}
+
+char
 *get_team(TEAM *teams, bool must_be, char group)
 {
 	unsigned int amount_of_letters_team_name;
