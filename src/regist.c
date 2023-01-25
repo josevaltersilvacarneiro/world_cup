@@ -34,7 +34,7 @@ void
 regist_teams(TEAM *teams)
 {
 	unsigned int max_amount, amount_of_teams;
-	TEAM *_teams;
+	TEAM *_teams = teams;
 	
 	max_amount = number_of_teams_to_register(teams);
 
@@ -45,13 +45,14 @@ regist_teams(TEAM *teams)
 	}
 
 	while (amount_of_teams-- > 0) {
-		_teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
+		teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
 
-		if (!_teams) {
+		if (!teams) {
 			printf("There was an error\n");
+			teams = _teams;
 			return; /* There wasn't enough memory */
 		} else
-			teams = _teams;
+			_teams = teams;
 
 		regist_team(teams);
 	}

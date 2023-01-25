@@ -74,10 +74,10 @@ main(int argc, char *argv[])
 	TEAM *teams;
 	GAME *games;
 
-	teams = (TEAM *) malloc(sizeof(TEAM));
+	teams = realloc(NULL, sizeof(TEAM));
 	teams->next = NULL;
 
-	games = (GAME *) malloc(sizeof(GAME));
+	games = realloc(NULL, sizeof(GAME));
 	games->next = NULL;
 
 	quit = false;
