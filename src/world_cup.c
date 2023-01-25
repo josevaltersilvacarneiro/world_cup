@@ -103,7 +103,6 @@ main(int argc, char *argv[])
 
 		switch (option) {
 			case 'r':
-				printf("Registering...\n");
 				teams = regist(teams, games);
 				break;
 			case 'e':
