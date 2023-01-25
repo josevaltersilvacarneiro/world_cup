@@ -7,14 +7,21 @@
 #include "config.h"
 #endif
 
+void
+clear_input_buffer(void)
+{
+	scanf("%*c");
+}
+
 unsigned int
 get_string(char *string, const char *message)
 {
 	unsigned int amount_of_letters = 0;
 	char letter;
 
+	clear_input_buffer();
+
 	printf(message);
-	scanf("%*c");
 	for (register int i = 0; letter != '\n'; i++) {
 		scanf("%c", &letter);
 		*(string + i) = letter;
