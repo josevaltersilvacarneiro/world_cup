@@ -147,5 +147,12 @@ number_of_teams_registered(TEAM *teams)
 unsigned int
 number_of_teams_to_register(TEAM *teams)
 {
+	/*
+	 * The number of teams that can be added is
+	 * equal to the number of groups times the
+	 * number of teams per group minus the num-
+	 * ber of teams that was already added.
+	 */
+
 	return AMOUNT_OF_GROUPS * 4 - number_of_teams_registered(teams);
 }
