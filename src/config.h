@@ -10,6 +10,11 @@
 struct team {
 	char group;
         char name[80];
+	unsigned int pt; /* points	    */
+	unsigned int gs; /* goals scored    */
+	unsigned int gc; /* goals conceded  */
+	int gd;		 /* goal difference */
+
         struct team *next;
 };
 
