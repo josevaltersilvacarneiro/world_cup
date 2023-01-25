@@ -5,6 +5,8 @@
 #define AMOUNT_OF_OPTIONS 8
 #define AMOUNT_OF_GROUPS  8
 
+#define AMOUNT_OF_SPACES 30
+
 struct team {
 	char group;
         char name[80];

@@ -22,6 +22,14 @@ char groups[] = {
 extern void regist_teams(TEAM *teams);
 
 void
+print_spaces(void)
+{
+	for (register int i = 0; i < AMOUNT_OF_SPACES; i++)
+		printf("-");
+	printf("\n");
+}
+
+void
 regist(TEAM *teams, GAME *games)
 {
 	char options[2];
@@ -48,12 +56,15 @@ void
 print_teams(TEAM *teams, GAME *games)
 {
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
+		print_spaces();
 		printf("%c\n", groups[i]);
+		print_spaces();
 
 		for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
 			if (team_ptr->group == groups[i])
 				printf("%s\n", team_ptr->name);
 	}
+	print_spaces();
 }
 
 int
