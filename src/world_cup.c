@@ -19,7 +19,7 @@ char groups[] = {
         'H',
 };
 
-extern void regist_teams(TEAM *teams);
+extern TEAM *regist_teams(TEAM *teams);
 
 void
 print_spaces(void)
@@ -29,8 +29,8 @@ print_spaces(void)
 	printf("\n");
 }
 
-void
-regist(TEAM *teams, GAME *games)
+TEAM
+*regist(TEAM *teams, GAME *games)
 {
 	char options[2];
 	char option;
@@ -45,11 +45,13 @@ regist(TEAM *teams, GAME *games)
 
 	switch (option) {
 		case 't':
-			regist_teams(teams);
+			teams = regist_teams(teams);
 			break;
 		case 'g':
 			break;
 	}
+
+	return teams;
 }
 
 void
@@ -74,10 +76,10 @@ main(int argc, char *argv[])
 	TEAM *teams;
 	GAME *games;
 
-	teams = realloc(NULL, sizeof(TEAM));
+	teams = calloc(1, sizeof(TEAM));
 	teams->next = NULL;
 
-	games = realloc(NULL, sizeof(GAME));
+	games = calloc(1, sizeof(GAME));
 	games->next = NULL;
 
 	quit = false;
@@ -102,7 +104,7 @@ main(int argc, char *argv[])
 		switch (option) {
 			case 'r':
 				printf("Registering...\n");
-				regist(teams, games);
+				teams = regist(teams, games);
 				break;
 			case 'e':
 				printf("Editing...\n");

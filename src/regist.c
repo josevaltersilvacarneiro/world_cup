@@ -18,20 +18,20 @@ extern unsigned int get_amount(const char *message);
 void
 regist_team(TEAM *teams)
 {
+	char *_team;
 	char group;
 
 	group = get_group(groups);
 	while (get_amount_of_registered_teams(teams, group) > 3) {
 		printf("The group %c is already complete\n", group);
-		
 		group = get_group(groups);
 	}
 
-	get_team(teams, false, group);
+	_team = get_team(teams, false, group);
 }
 
-void
-regist_teams(TEAM *teams)
+TEAM
+*regist_teams(TEAM *teams)
 {
 	unsigned int max_amount, amount_of_teams;
 	TEAM *_teams = teams;
@@ -43,17 +43,17 @@ regist_teams(TEAM *teams)
 		printf("Only %u teams left to register\n", max_amount);
 		amount_of_teams = get_amount("Number of teams: ");
 	}
+	
+	teams = realloc(teams, amount_of_teams * sizeof(TEAM)); /* See the main function in world_cup.c */
 
-	while (amount_of_teams-- > 0) {
-		teams = realloc(teams, sizeof(TEAM)); /* See the main function in world_cup.c */
+	if (!teams) {
+		printf("There was an error\n");
+		return _teams; /* There wasn't enough memory */
+	} else
+		_teams = teams;
 
-		if (!teams) {
-			printf("There was an error\n");
-			teams = _teams;
-			return; /* There wasn't enough memory */
-		} else
-			_teams = teams;
-
+	while (amount_of_teams-- > 0)
 		regist_team(teams);
-	}
+
+	return teams;
 }
