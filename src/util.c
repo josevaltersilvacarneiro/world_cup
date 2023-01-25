@@ -14,6 +14,16 @@ clear_input_buffer(void)
 unsigned int
 get_string(char *string, const char *message)
 {
+	/*
+	 * This function receives two parameters:
+	 * one pointer to string that will be mo-
+	 * dified and one pointer to message that
+	 * will be shown on default output.
+	 *
+	 * It returns the amount of characters
+	 * typed by the user.
+	 */
+
 	unsigned int amount_of_letters = 0;
 	char letter;
 
