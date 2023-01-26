@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "util.h"
-
 #ifndef config_h
 #include "config.h"
 #endif /* config_h */
@@ -19,6 +17,7 @@ char groups[] = {
         'H',
 };
 
+extern char get_option(const char options[], unsigned int amount_of_options);
 extern TEAM *regist_teams(TEAM *teams);
 
 void
