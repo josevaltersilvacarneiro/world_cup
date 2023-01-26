@@ -5,6 +5,17 @@
 
 #include "util.h"
 
+size_t
+fact(size_t number)
+{
+	/* This function calculates the factorial of a number */
+
+	if (number == 1)
+		return 1;
+
+	return fact(number - 1);
+}
+
 void
 clear_input_buffer(void)
 {
