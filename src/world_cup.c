@@ -28,8 +28,8 @@ print_spaces(void)
 	printf("\n");
 }
 
-TEAM
-*regist(TEAM *teams, GAME *games)
+void
+regist(CUP *cup)
 {
 	char options[2];
 	char option;
@@ -44,24 +44,22 @@ TEAM
 
 	switch (option) {
 		case 't':
-			teams = regist_teams(teams);
+			cup->teams = regist_teams(cup->teams);
 			break;
 		case 'g':
 			break;
 	}
-
-	return teams;
 }
 
 void
-print_teams(TEAM *teams, GAME *games)
+print_teams(CUP *cup)
 {
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
 		print_spaces();
 		printf("%c\n", groups[i]);
 		print_spaces();
 
-		for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+		for (TEAM *team_ptr = cup->teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
 			if (team_ptr->group == groups[i])
 				printf("%s\n", team_ptr->name);
 	}
@@ -72,14 +70,13 @@ int
 main(int argc, char *argv[])
 {
 	bool quit;
-	TEAM *teams;
-	GAME *games;
+	CUP cup;
 
-	teams = calloc(1, sizeof(TEAM));
-	teams->next = NULL;
+	cup.teams = calloc(1, sizeof(TEAM));
+	cup.teams->next = NULL;
 
-	games = calloc(1, sizeof(GAME));
-	games->next = NULL;
+	cup.games = calloc(1, sizeof(GAME));
+	cup.games->next = NULL;
 
 	quit = false;
 	do {
@@ -102,7 +99,7 @@ main(int argc, char *argv[])
 
 		switch (option) {
 			case 'r':
-				teams = regist(teams, games);
+				regist(&cup);
 				break;
 			case 'e':
 				printf("Editing...\n");
@@ -114,7 +111,7 @@ main(int argc, char *argv[])
 			case 'n':
 				break;
 			case 'p':
-				print_teams(teams, games);
+				print_teams(&cup);
 				break;
 			case 'w':
 				break;
@@ -133,8 +130,8 @@ main(int argc, char *argv[])
 	/*for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
 		free(team_ptr->name);*/
 	
-	free(games);
-	free(teams);
+	free(cup.games);
+	free(cup.teams);
 
 	return 0;
 }
