@@ -24,6 +24,9 @@ typedef struct team TEAM;
 struct game {
         TEAM *team_one;  
         TEAM *team_two;
+	size_t team_one_goals;
+	size_t team_two_goals;
+	size_t date;
 
         struct game *next;
 };
