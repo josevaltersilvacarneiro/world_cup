@@ -195,3 +195,16 @@ number_of_teams_to_register(TEAM *teams)
 
 	return AMOUNT_OF_GROUPS * 4 - number_of_teams_registered(teams);
 }
+
+size_t
+number_of_games_to_register(TEAM *teams, GAME *games, char groups[])
+{
+	/*
+	 * The amount of games that can be added is
+	 * equal to the maximum amount that can be
+	 * registered minus the amount that was
+	 * already added.
+	 */
+
+	return maximum_amount_of_registered_games(teams, groups) - number_of_games_registered(games);
+}
