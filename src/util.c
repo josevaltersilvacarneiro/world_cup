@@ -140,6 +140,14 @@ char
 }
 
 size_t
+maximum_amount_of_registered_games_group(TEAM *teams, char group)
+{
+	/* Fundamental Counting Theorem */
+
+	return fact(get_amount_of_registered_teams(teams, group) - 1);
+}
+
+size_t
 maximum_amount_of_registered_games(TEAM *teams, char groups[])
 {
 	/*
