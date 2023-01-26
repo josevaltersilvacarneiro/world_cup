@@ -22,7 +22,7 @@ clear_input_buffer(void)
 	scanf("%*c");
 }
 
-unsigned int
+size_t
 get_string(char *string, const char *message)
 {
 	/*
@@ -35,7 +35,7 @@ get_string(char *string, const char *message)
 	 * typed by the user.
 	 */
 
-	unsigned int amount_of_letters = 0;
+	size_t amount_of_letters = 0;
 	char letter;
 
 	clear_input_buffer();
