@@ -50,7 +50,7 @@ GAME
 			/* ↓ Fundamental Counting Theorem ↓ */
 			if (maximum_amount_of_games == fact(AMOUNT_OF_TEAMS_PER_GROUP - 1))
 				puts("All games in this group already were registered");
-			else if (maximum_amount_of_games_group == get_amount_of_registered_games(games, team_one->group))
+			else if (maximum_amount_of_games == get_amount_of_registered_games(games, team_one->group))
 				puts("To register more games in this group, add more teams");
 			else
 				break;
