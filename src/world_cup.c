@@ -121,12 +121,6 @@ main(int argc, char *argv[])
 		}
 	} while (!quit);
 
-	/*
-	for (GAME *p = games->next; p != NULL; p = p->next) {
-		free(p->team_one);
-		free(p->team_two);
-	}*/
-
 	/*for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
 		free(team_ptr->name);*/
 	
