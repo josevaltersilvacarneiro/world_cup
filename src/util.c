@@ -151,6 +151,18 @@ get_amount_of_registered_teams(TEAM *teams, char group)
 	return amount_of_registered_teams;
 }
 
+size_t
+get_amount_of_registered_games(GAME *games, char group)
+{
+	size_t amount_of_registered_games;
+
+	for (GAME *game_ptr = games->next; game_ptr != NULL; game_ptr = game_ptr->next)
+		if (game_ptr->team_one->group == group)
+			amount_of_registered_games++;
+
+	return amount_of_registered_games;
+}
+
 unsigned int
 number_of_teams_registered(TEAM *teams)
 {
@@ -163,6 +175,12 @@ number_of_teams_registered(TEAM *teams)
 	   ) ;
 
 	return number_of_teams_registered;
+}
+
+size_t
+number_of_games_registered(GAME *games)
+{
+	return sizeof(games) / sizeof(GAME) - 1;
 }
 
 unsigned int
