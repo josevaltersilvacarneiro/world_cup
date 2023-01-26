@@ -42,7 +42,7 @@ GAME
 	GAME *last_game;
 
 	rg_game:
-		team = get_team(teams);
+		team_one = get_team(teams);
 		
 		for (;;) {
 			maximum_amount_of_games = maximum_amount_of_registered_games_group(games, team_one->group);
