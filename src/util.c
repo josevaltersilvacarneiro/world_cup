@@ -105,36 +105,36 @@ get_group_with_registered_teams(TEAM *teams, char groups[])
 }
 
 char
-*get_team(TEAM *teams, bool must_be, char group)
+*add_new_team(TEAM *teams, char group)
 {
 	unsigned int amount_of_letters_team_name;
-	TEAM *last_team_ptr = teams;
 	char team_name[MAXIMUM_STRING_LENGTH];
+	TEAM *last_team_ptr = teams;
 
-	if (must_be) {
+	do {
+		amount_of_letters_team_name = get_string(team_name, "Type the team name: ");
 
-	}
-	else {
-		do {
-			amount_of_letters_team_name = get_string(team_name, "Type the team name: ");
+		for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next) {
+			if (!strcmp(team_ptr->name, team_name))
+				break;
+			last_team_ptr = team_ptr;
+		}
 
-			for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next) {
-				if (!strcmp(team_ptr->name, team_name))
-					break;
-				last_team_ptr = team_ptr;
-			}
+	} while (last_team_ptr->next != NULL);
 
-		} while (last_team_ptr->next != NULL);
+	last_team_ptr->next = (last_team_ptr + 1);	/* pointing to the last position */
+	last_team_ptr = last_team_ptr->next;		/* going to a last position	 */
 
-		last_team_ptr->next = (last_team_ptr + 1);	/* pointing to the last position */
-		last_team_ptr = last_team_ptr->next;		/* going to a last position	 */
+	last_team_ptr->next = NULL;
 
-		last_team_ptr->next = NULL;
+	last_team_ptr->group = group;
+	//last_team_ptr->name = malloc((amount_of_letters_team_name + 1) * sizeof(char));
+	strncpy(last_team_ptr->name, team_name, amount_of_letters_team_name + 1);
 
-		last_team_ptr->group = group;
-		//last_team_ptr->name = malloc((amount_of_letters_team_name + 1) * sizeof(char));
-		strncpy(last_team_ptr->name, team_name, amount_of_letters_team_name + 1);
-	}
+	last_team_ptr->pt = 0;
+	last_team_ptr->gs = 0;
+	last_team_ptr->gc = 0;
+	last_team_ptr->gd = 0;
 
 	return last_team_ptr->name;
 }

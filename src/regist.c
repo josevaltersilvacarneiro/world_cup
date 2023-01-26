@@ -10,7 +10,7 @@ extern char groups[];
 
 extern char get_group(char groups[]);
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
-extern char *get_team(TEAM *teams, bool must_be, char group);
+extern char *add_new_team(TEAM *teams, char group);
 
 extern unsigned int number_of_teams_to_register(TEAM *teams);
 extern unsigned int get_amount(const char *message);
@@ -18,7 +18,6 @@ extern unsigned int get_amount(const char *message);
 void
 regist_team(TEAM *teams)
 {
-	char *_team;
 	char group;
 
 	group = get_group(groups);
@@ -27,7 +26,7 @@ regist_team(TEAM *teams)
 		group = get_group(groups);
 	}
 
-	_team = get_team(teams, false, group);
+	add_new_team(teams, group);
 }
 
 TEAM
