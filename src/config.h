@@ -27,3 +27,11 @@ struct game {
 };
 
 typedef struct game GAME;
+
+struct cup {
+	TEAM *teams;
+	GAME *games;
+};
+
+typedef struct cup CUP;
+
