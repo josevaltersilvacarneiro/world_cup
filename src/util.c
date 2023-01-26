@@ -139,6 +139,27 @@ char
 	return last_team_ptr->name;
 }
 
+size_t
+maximum_amount_of_registered_games(TEAM *teams, char groups[])
+{
+	/*
+	 * Using a repetiton loop, all groups looped.
+	 * By means of the Fundamental Counting Theo-
+	 * rem, the number of possible matches in
+	 * each group is found and then added to the
+	 * accumulator variable called 'max_amount_-
+	 * of_registered_games'. At the end, it's
+	 * returned.
+	 */
+
+	size_t max_amount_of_registered_games = 0;
+
+	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++)
+		max_amount_of_registered_games += maximum_amount_of_registered_games_group(teams, groups[i]);
+
+	return max_amount_of_registered_games;
+}
+
 unsigned int
 get_amount_of_registered_teams(TEAM *teams, char group)
 {
