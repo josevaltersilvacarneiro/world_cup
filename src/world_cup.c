@@ -19,7 +19,7 @@ char groups[] = {
 
 extern char get_option(const char options[], unsigned int amount_of_options);
 extern TEAM *regist_teams(TEAM *teams);
-extern GAME *regist_games(TEAM *teams, GAME *games);
+extern GAME *regist_games(const TEAM *teams, GAME *games);
 
 void
 print_spaces(void)
