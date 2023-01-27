@@ -19,7 +19,7 @@ char groups[] = {
 
 extern char get_option(const char options[], unsigned int amount_of_options);
 extern TEAM *regist_teams(TEAM *teams);
-extern GAME *regist_games(GAME *games);
+extern GAME *regist_games(TEAM *teams, GAME *games);
 
 void
 print_spaces(void)
@@ -48,7 +48,7 @@ regist(CUP *cup)
 			cup->teams = regist_teams(cup->teams);
 			break;
 		case 'g':
-			cup->games = regist_games(cup->games);
+			cup->games = regist_games(cup->teams, cup->games);
 			break;
 	}
 }
@@ -63,7 +63,7 @@ print_teams(CUP *cup)
 
 		for (TEAM *team_ptr = cup->teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
 			if (team_ptr->group == groups[i])
-				printf("%s\n", team_ptr->name);
+				printf("%s\t%u\t%u\t%u\n", team_ptr->name, team_ptr->pt, team_ptr->gs, team_ptr->gc);
 	}
 	print_spaces();
 }
