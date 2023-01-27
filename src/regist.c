@@ -9,7 +9,7 @@
 extern char groups[];
 
 extern char get_group(char groups[]);
-extern TEAM *get_team(TEAM *teams);
+extern TEAM *get_team(const TEAM *teams);
 extern char *add_new_team(TEAM *teams, char group);
 
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
