@@ -46,7 +46,7 @@ GAME
 		team_one = get_team(teams);
 		
 		for (;;) {
-			maximum_amount_of_games = maximum_amount_of_registered_games_group(games, team_one->group);
+			maximum_amount_of_games = maximum_amount_of_registered_games_group(teams, team_one->group);
 
 			/* ↓ Fundamental Counting Theorem ↓ */
 			if (maximum_amount_of_games == fact(AMOUNT_OF_TEAMS_PER_GROUP - 1))
