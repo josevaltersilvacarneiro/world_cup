@@ -53,10 +53,10 @@ get_string(char *string, const char *message)
 	return amount_of_letters;
 }
 
-unsigned int
+size_t
 get_amount(const char *message)
 {
-	unsigned int amount;
+	size_t amount;
 	
 	printf(message);
 	scanf("%u", &amount);
