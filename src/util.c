@@ -124,7 +124,7 @@ TEAM
 	for (;;) {
 		get_string(team_name, "Type a registered team: ");
 
-		for (team_ptr = teams->next; team_ptr != NULL; team = team_ptr->next) {
+		for (team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next) {
 			if (!strcmp(team_ptr->name, team_name))
 				return team_ptr;
 			else
