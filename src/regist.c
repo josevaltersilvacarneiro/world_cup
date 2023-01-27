@@ -8,6 +8,8 @@
 
 extern char groups[];
 
+extern size_t fact(size_t number);
+
 extern char get_group(char groups[]);
 extern TEAM *get_team(const TEAM *teams);
 extern char *add_new_team(TEAM *teams, char group);
@@ -17,7 +19,7 @@ extern unsigned int number_of_teams_to_register(TEAM *teams);
 
 extern size_t get_amount_of_registered_games(GAME *games, char group);
 extern size_t number_of_games_to_register(TEAM *teams, GAME *games, char groups[]);
-extern size_t maximum_amount_of_registered_games_group(TEAM *teams, char group);
+extern size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
 
 extern unsigned int get_amount(const char *message);
 
