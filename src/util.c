@@ -171,7 +171,7 @@ char
 }
 
 size_t
-maximum_amount_of_registered_games_group(TEAM *teams, char group)
+maximum_amount_of_registered_games_group(const TEAM *teams, char group)
 {
 	/* Fundamental Counting Theorem */
 
