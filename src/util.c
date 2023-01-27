@@ -200,7 +200,7 @@ maximum_amount_of_registered_games(TEAM *teams, char groups[])
 }
 
 unsigned int
-get_amount_of_registered_teams(TEAM *teams, char group)
+get_amount_of_registered_teams(const TEAM *teams, char group)
 {
 	unsigned int amount_of_registered_teams = 0;
 

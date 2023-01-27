@@ -12,7 +12,7 @@ TEAM *get_team(const TEAM *teams);
 char *add_new_team(TEAM *teams, char group);
 size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
 size_t maximum_amount_of_registered_games(TEAM *teams, char groups[]);
-unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
+unsigned int get_amount_of_registered_teams(const TEAM *teams, char group);
 size_t get_amount_of_registered_games(GAME *games, char group);
 
 size_t number_of_teams_registered(TEAM *teams);
