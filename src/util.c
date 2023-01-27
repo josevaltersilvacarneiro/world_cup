@@ -115,6 +115,27 @@ get_group_with_registered_teams(TEAM *teams, char groups[])
 	}
 }
 
+TEAM
+*get_team(const TEAM *teams)
+{
+	char   team_name[MAXIMUM_STRING_LENGTH];
+	TEAM  *team_ptr;
+
+
+	for (;;) {
+		get_string(team_name);
+
+		for (team_ptr = teams->next; team_ptr != NULL; team = team_ptr->next) {
+			if (!strcmp(team_ptr->name, team_name))
+				return team_ptr;
+			else
+				puts("The team typed hasn't added yet");
+		}
+	}
+
+	return team_ptr;
+}
+
 char
 *add_new_team(TEAM *teams, char group)
 {

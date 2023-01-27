@@ -8,6 +8,7 @@ size_t get_string(char *string, const char *message);
 size_t get_amount(const char *message);
 char get_option(const char options[], unsigned int amount_of_options);
 char get_group_with_registered_teams(TEAM *teams, char groups[]);
+TEAM *get_team(const TEAM *teams);
 char *add_new_team(TEAM *teams, char group);
 size_t maximum_amount_of_registered_games_group(TEAM *teams, char group);
 size_t maximum_amount_of_registered_games(TEAM *teams, char groups[]);
