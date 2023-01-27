@@ -135,6 +135,12 @@ TEAM
 	return team_ptr;
 }
 
+size_t
+get_date()
+{
+	return 0;
+}
+
 char
 *add_new_team(TEAM *teams, char group)
 {
