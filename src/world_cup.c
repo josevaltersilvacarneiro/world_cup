@@ -19,6 +19,7 @@ char groups[] = {
 
 extern char get_option(const char options[], unsigned int amount_of_options);
 extern TEAM *regist_teams(TEAM *teams);
+extern GAME *regist_games(GAME *games);
 
 void
 print_spaces(void)
@@ -47,6 +48,7 @@ regist(CUP *cup)
 			cup->teams = regist_teams(cup->teams);
 			break;
 		case 'g':
+			cup->games = regist_games(cup->games);
 			break;
 	}
 }
