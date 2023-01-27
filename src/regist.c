@@ -126,7 +126,7 @@ GAME
 	size_t max_amount, amount_of_games;
 	GAME *_games = games;
 
-	max_amount = number_of_games_to_register(games);
+	max_amount = number_of_games_to_register(teams, games, groups);
 
 	/*
 	 * As long as amount of games typed by the user is higher
