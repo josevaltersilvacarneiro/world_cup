@@ -165,9 +165,7 @@ char
 	last_team_ptr->next = NULL;
 
 	last_team_ptr->group = group;
-	//last_team_ptr->name = malloc((amount_of_letters_team_name + 1) * sizeof(char));
 	strncpy(last_team_ptr->name, team_name, amount_of_letters_team_name + 1);
-
 	last_team_ptr->pt = 0;
 	last_team_ptr->gs = 0;
 	last_team_ptr->gc = 0;
