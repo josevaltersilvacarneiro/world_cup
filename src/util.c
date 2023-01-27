@@ -223,7 +223,7 @@ number_of_games_registered(GAME *games)
 	return sizeof(games) / sizeof(GAME) - 1;
 }
 
-unsigned int
+size_t
 number_of_teams_to_register(TEAM *teams)
 {
 	/*
