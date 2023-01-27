@@ -162,14 +162,14 @@ char
 	last_team_ptr->next = (last_team_ptr + 1);	/* pointing to the last position */
 	last_team_ptr = last_team_ptr->next;		/* going to a last position	 */
 
-	last_team_ptr->next = NULL;
-
 	last_team_ptr->group = group;
 	strncpy(last_team_ptr->name, team_name, amount_of_letters_team_name + 1);
 	last_team_ptr->pt = 0;
 	last_team_ptr->gs = 0;
 	last_team_ptr->gc = 0;
 	last_team_ptr->gd = 0;
+
+	last_team_ptr->next = NULL;
 
 	return last_team_ptr->name;
 }
