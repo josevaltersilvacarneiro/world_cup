@@ -183,7 +183,7 @@ maximum_amount_of_registered_games_group(const TEAM *teams, char group)
 }
 
 size_t
-maximum_amount_of_registered_games(TEAM *teams, char groups[])
+maximum_amount_of_registered_games(const TEAM *teams, char groups[])
 {
 	/*
 	 * Using a repetiton loop, all groups looped.
@@ -261,7 +261,7 @@ number_of_teams_to_register(TEAM *teams)
 }
 
 size_t
-number_of_games_to_register(TEAM *teams, GAME *games, char groups[])
+number_of_games_to_register(const TEAM *teams, GAME *games, char groups[])
 {
 	/*
 	 * The amount of games that can be added is

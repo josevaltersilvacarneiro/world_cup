@@ -13,7 +13,7 @@ size_t get_date();
 
 char *add_new_team(TEAM *teams, char group);
 size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
-size_t maximum_amount_of_registered_games(TEAM *teams, char groups[]);
+size_t maximum_amount_of_registered_games(const TEAM *teams, char groups[]);
 unsigned int get_amount_of_registered_teams(const TEAM *teams, char group);
 size_t get_amount_of_registered_games(GAME *games, char group);
 
@@ -21,4 +21,4 @@ size_t number_of_teams_registered(TEAM *teams);
 size_t number_of_games_registered(GAME *games);
 
 size_t number_of_teams_to_register(TEAM *teams);
-size_t number_of_games_to_register(TEAM *teams, GAME *games, char groups[]);
+size_t number_of_games_to_register(const TEAM *teams, GAME *games, char groups[]);
