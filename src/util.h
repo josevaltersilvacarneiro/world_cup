@@ -18,4 +18,4 @@ size_t number_of_teams_registered(TEAM *teams);
 size_t number_of_games_registered(GAME *games);
 
 size_t number_of_teams_to_register(TEAM *teams);
-size_t number_of_games_to_register(GAME *games);
+size_t number_of_games_to_register(TEAM *teams, GAME *games, char groups[]);
