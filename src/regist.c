@@ -108,11 +108,8 @@ TEAM
 	
 	teams = realloc(teams, amount_of_teams * sizeof(TEAM)); /* See the main function in world_cup.c */
 
-	if (!teams) {
-		printf("There was an error\n");
+	if (!teams)
 		return _teams; /* There wasn't enough memory */
-	} else
-		_teams = teams;
 
 	while (amount_of_teams-- > 0)
 		regist_team(teams);
