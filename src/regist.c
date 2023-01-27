@@ -106,6 +106,9 @@ TEAM
 		amount_of_teams = get_amount("Number of teams: ");
 	}
 	
+	if (amount_of_teams <= 0)
+		return teams;  /* The user gave up on registering more teams */
+
 	teams = realloc(teams, amount_of_teams * sizeof(TEAM)); /* See the main function in world_cup.c */
 
 	if (!teams)
