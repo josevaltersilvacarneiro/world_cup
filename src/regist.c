@@ -12,6 +12,7 @@ extern size_t fact(size_t number);
 
 extern char get_group(char groups[]);
 extern TEAM *get_team(const TEAM *teams);
+extern size_t get_date();
 extern char *add_new_team(TEAM *teams, char group);
 
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
