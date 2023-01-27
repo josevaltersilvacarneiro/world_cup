@@ -41,7 +41,11 @@ GAME
 *regist_game(const TEAM *teams, GAME *games)
 {
 	size_t maximum_amount_of_games;
+	
 	TEAM *team_one, *team_two;
+	unsigned short number_of_goals_team_one, number_of_goals_team_two;
+	size_t date;
+
 	GAME *last_game;
 
 	rg_game:
