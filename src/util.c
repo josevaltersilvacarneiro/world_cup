@@ -203,10 +203,10 @@ get_amount_of_registered_games(GAME *games, char group)
 	return amount_of_registered_games;
 }
 
-unsigned int
+size_t
 number_of_teams_registered(TEAM *teams)
 {
-	unsigned int number_of_teams_registered = 0;
+	size_t number_of_teams_registered = 0;
 
 	for (
 			TEAM *team_ptr = teams->next;
