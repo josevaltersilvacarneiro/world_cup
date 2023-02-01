@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #ifndef config_h
 #include "config.h"
@@ -11,9 +12,8 @@ extern char groups[];
 extern size_t fact(size_t number);
 
 extern char get_group(char groups[]);
-extern TEAM *get_team(const TEAM *teams);
+extern String get_team(const TEAM *teams, bool is_in);
 extern size_t get_date();
-extern char *add_new_team(TEAM *teams, char group);
 
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
 extern unsigned int number_of_teams_to_register(TEAM *teams);
@@ -24,10 +24,24 @@ extern size_t maximum_amount_of_registered_games_group(const TEAM *teams, char g
 
 extern unsigned int get_amount(const char *message);
 
+TEAM
+*convert(const TEAM *teams, String team_name)
+{
+	TEAM *team_ptr;
+
+	for (team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+		if (!strcmp(team_name, team_ptr->name))
+			return team_ptr;
+	
+	return team_ptr;
+}
+
 void
 regist_team(TEAM *teams)
 {
 	char group;
+	String team;
+	TEAM *last_team;
 
 	group = get_group(groups);
 	while (get_amount_of_registered_teams(teams, group) > 3) {
@@ -35,7 +49,22 @@ regist_team(TEAM *teams)
 		group = get_group(groups);
 	}
 
-	add_new_team(teams, group);
+	team = get_team(teams, false);
+
+	/* Adding a new team */
+
+	for (last_team = teams->next; last_team->next != NULL; last_team = last_team->next) ;
+
+	last_team->next = last_team + 1;
+	last_team++;
+
+	last_team->group = group;
+	last_team->name  = team;
+	last_team->pt	 = 0;
+	last_team->gs	 = 0;
+	last_team->gc	 = 0;
+	last_team->gd	 = 0;
+	last_team->next  = NULL;
 }
 
 GAME
@@ -50,7 +79,7 @@ GAME
 	GAME *last_game;
 
 	rg_game:
-		team_one = get_team(teams);
+		team_one = convert(teams, get_team(teams, true));
 		
 		for (;;) {
 			maximum_amount_of_games = maximum_amount_of_registered_games_group(teams, team_one->group);
@@ -64,7 +93,7 @@ GAME
 				break;
 		}
 	
-	team_two = get_team(teams);
+	team_two = convert(teams, get_team(teams, true));
 
 	if (team_one->group != team_two->group) {
 		printf("%s isn't in group %c\n", team_one->name, team_two->group);

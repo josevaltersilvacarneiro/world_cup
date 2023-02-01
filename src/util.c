@@ -54,12 +54,12 @@ get_string(char *string, const char *message)
 }
 
 size_t
-get_amount(const char *message)
+get_amount(String message)
 {
+	char *eptr;
 	size_t amount;
 	
-	printf(message);
-	scanf("%u", &amount);
+	amount = strtoul(input(message), &eptr, 10);
 
 	return amount;
 }
@@ -67,11 +67,11 @@ get_amount(const char *message)
 char
 get_option(const char options[], unsigned int amount_of_options)
 {
+	char *eptr;
 	unsigned int option;
 
 	do {
-		printf("Type your option: ");
-		scanf("%d", &option);
+		option = strtoul(input("Type your option: "), &eptr, 10);
 
 		option--;
 
@@ -83,23 +83,22 @@ get_option(const char options[], unsigned int amount_of_options)
 char
 get_group(char groups[])
 {
-	char group;
+	String group;
 	bool found;
 
 	do {
 		found = false;
 		
-		printf("Type a group: ");
-		scanf(" %c", &group);
+		group = input("Type a group: ");
 
 		for (register int i = 0; i < AMOUNT_OF_GROUPS; i++)
-			if (group == groups[i]) {
+			if (*group == groups[i]) {
 				found = true;
 				break;
 			}
 	} while (!found);
 
-	return group;
+	return *group;
 }
 
 char
@@ -115,24 +114,29 @@ get_group_with_registered_teams(TEAM *teams, char groups[])
 	}
 }
 
-TEAM
-*get_team(const TEAM *teams)
+String
+get_team(const TEAM *teams, bool is_in)
 {
-	char   team_name[MAXIMUM_STRING_LENGTH];
+	String team;
 	TEAM  *team_ptr;
 
 	for (;;) {
-		get_string(team_name, "Type a registered team: ");
+		team = is_in ? input("Type a registered team: ") : input("Type a team: ");
 
 		for (team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next) {
-			if (!strcmp(team_ptr->name, team_name))
-				return team_ptr;
-			else
-				puts("The team typed hasn't added yet");
+			if (!strcmp(team_ptr->name, team)) {
+				if(is_in)
+					return team;
+				else
+					break;
+			}
 		}
-	}
 
-	return team_ptr;
+		if (team_ptr == NULL)
+			return team;
+
+		is_in ? puts("The team typed hasn't added yet") : puts("The team typed has already been added");
+	}
 }
 
 size_t
@@ -140,7 +144,7 @@ get_date()
 {
 	return 0;
 }
-
+/**
 char
 *add_new_team(TEAM *teams, char group)
 {
@@ -159,8 +163,8 @@ char
 
 	} while (last_team_ptr->next != NULL);
 
-	last_team_ptr->next = last_team_ptr + 1;	/* pointing to the last position */
-	last_team_ptr++;				/* going to a last position	 */
+	last_team_ptr->next = last_team_ptr + 1;	* pointing to the last position /
+	last_team_ptr++;				* going to a last position	 /
 
 	last_team_ptr->group = group;
 	strncpy(last_team_ptr->name, team_name, amount_of_letters_team_name + 1);
@@ -173,7 +177,7 @@ char
 
 	return last_team_ptr->name;
 }
-
+*/
 size_t
 maximum_amount_of_registered_games_group(const TEAM *teams, char group)
 {
