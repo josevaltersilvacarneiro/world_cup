@@ -10,10 +10,10 @@ fact(size_t number)
 {
 	/* This function calculates the factorial of a number */
 
-	if (number == 1)
+	if (number == 0)
 		return 1;
 
-	return fact(number - 1);
+	return number * fact(number - 1);
 }
 
 void
