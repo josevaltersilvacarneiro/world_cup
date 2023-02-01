@@ -31,7 +31,7 @@ input(const String message)
 	amount_of_letters--;
 	string[amount_of_letters] = '\0';
 
-	strings = realloc(strings, sizeof(String));
+	strings = realloc(strings, sizeof(String) * (amount_of_strings + 1));
 	strings[amount_of_strings] = calloc(amount_of_letters + 1, sizeof(char));
 	strncpy(strings[amount_of_strings], string, amount_of_letters + 1);
 
