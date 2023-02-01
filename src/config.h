@@ -1,7 +1,5 @@
 #define config_h
 
-#define MAXIMUM_STRING_LENGTH 2024
-
 #define AMOUNT_OF_OPTIONS 8
 
 #define AMOUNT_OF_GROUPS	  8
@@ -10,7 +8,7 @@
 
 struct team {
 	char group;
-        char name[80];
+        char *name;
 	unsigned int pt; /* points	    */
 	unsigned int gs; /* goals scored    */
 	unsigned int gc; /* goals conceded  */
