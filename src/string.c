@@ -10,7 +10,7 @@ size_t amount_of_strings = 0;
 char **strings 		 = NULL;
 
 String
-input(const char *message)
+input(const String message)
 {
 	 /*
          * This function receives one pointer to
