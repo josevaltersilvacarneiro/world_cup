@@ -54,7 +54,7 @@ regist_team(TEAM *teams)
 
 	/* Adding a new team */
 
-	for (last_team = teams->next; last_team->next != NULL; last_team = last_team->next) ;
+	for (last_team = teams; last_team->next != NULL; last_team = last_team->next) ;
 
 	last_team->next = last_team + 1;
 	last_team++;
