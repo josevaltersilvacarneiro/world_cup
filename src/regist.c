@@ -16,6 +16,7 @@ extern String get_team(const TEAM *teams, bool is_in);
 extern size_t get_date();
 
 extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
+extern size_t number_of_teams_registered(TEAM *teams);
 extern unsigned int number_of_teams_to_register(TEAM *teams);
 
 extern size_t get_amount_of_registered_games(GAME *games, char group);
@@ -138,7 +139,10 @@ TEAM
 	if (amount_of_teams <= 0)
 		return teams;  /* The user gave up on registering more teams */
 
-	teams = realloc(teams, amount_of_teams * sizeof(TEAM)); /* See the main function in world_cup.c */
+	teams = realloc(
+				teams,
+				(amount_of_teams + number_of_teams_registered(teams)) * sizeof(TEAM)
+		       );	/* See the main function in world_cup.c */
 
 	if (!teams)
 		return _teams; /* There wasn't enough memory */
