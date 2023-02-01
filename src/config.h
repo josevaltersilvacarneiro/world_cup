@@ -6,6 +6,8 @@
 #define AMOUNT_OF_TEAMS_PER_GROUP 4
 #define AMOUNT_OF_SPACES 	  30
 
+typedef char *String;
+
 struct team {
 	char group;
         char *name;
