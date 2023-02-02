@@ -141,7 +141,7 @@ TEAM
 
 	teams = realloc(
 				teams,
-				(amount_of_teams + number_of_teams_registered(teams)) * sizeof(TEAM)
+				(amount_of_teams + number_of_teams_registered(teams) + 1) * sizeof(TEAM)
 		       );	/* See the main function in world_cup.c */
 
 	if (!teams)
