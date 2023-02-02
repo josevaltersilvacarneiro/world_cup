@@ -15,16 +15,16 @@ extern char get_group(char groups[]);
 extern String get_team(const TEAM *teams, bool is_in);
 extern size_t get_date();
 
-extern unsigned int get_amount_of_registered_teams(TEAM *teams, char group);
+extern size_t get_amount_of_registered_teams(TEAM *teams, char group);
 extern size_t number_of_teams_registered(TEAM *teams);
-extern unsigned int number_of_teams_to_register(TEAM *teams);
+extern size_t number_of_teams_to_register(TEAM *teams);
 
 extern size_t get_amount_of_registered_games(GAME *games, char group);
 extern size_t number_of_games_registered(GAME *games);
 extern size_t number_of_games_to_register(const TEAM *teams, GAME *games, char groups[]);
 extern size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
 
-extern unsigned int get_amount(const char *message);
+extern size_t get_amount(const char *message);
 
 TEAM
 *convert(const TEAM *teams, String team_name)
