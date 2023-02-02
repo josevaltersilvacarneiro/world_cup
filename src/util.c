@@ -224,9 +224,9 @@ number_of_games_registered(GAME *games)
 	size_t num_of_games_registered = 0;
 
 	for (
-			GAME *game_ptr = games->next;
-			game_ptr != NULL;
-			game_ptr = game_ptr->next, num_of_games_registered++
+		GAME *game_ptr = games->next;
+		game_ptr != NULL;
+		game_ptr = game_ptr->next, num_of_games_registered++
 	    ) ;
 
 	return num_of_games_registered;
