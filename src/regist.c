@@ -20,6 +20,7 @@ extern size_t number_of_teams_registered(TEAM *teams);
 extern unsigned int number_of_teams_to_register(TEAM *teams);
 
 extern size_t get_amount_of_registered_games(GAME *games, char group);
+extern size_t number_of_games_registered(GAME *games);
 extern size_t number_of_games_to_register(const TEAM *teams, GAME *games, char groups[]);
 extern size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
 
@@ -175,7 +176,10 @@ GAME
 	if (amount_of_games <= 0)
 		return games;  /* The user gave up on registering more games */
 
-	games = realloc(games, amount_of_games * sizeof(GAME));
+	games = realloc(
+				games,
+				(amount_of_games + number_of_games_registered(games) + 1) * sizeof(GAME)
+		       );
 
 	if (!games)
 		return _games; /* There wasn't enough memory */
