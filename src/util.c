@@ -174,10 +174,10 @@ maximum_amount_of_registered_games(const TEAM *teams, char groups[])
 	return max_amount_of_registered_games;
 }
 
-unsigned int
+size_t
 get_amount_of_registered_teams(const TEAM *teams, char group)
 {
-	unsigned int amount_of_registered_teams = 0;
+	size_t amount_of_registered_teams = 0;
 
 	for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
 		if (team_ptr->group == group)
