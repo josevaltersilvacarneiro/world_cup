@@ -213,7 +213,15 @@ number_of_teams_registered(TEAM *teams)
 size_t
 number_of_games_registered(GAME *games)
 {
-	return sizeof(games) / sizeof(GAME) - 1;
+	size_t num_of_games_registered = 0;
+
+	for (
+			GAME *game_ptr = games->next;
+			game_ptr != NULL;
+			game_ptr = game_ptr->next, num_of_games_registered++
+	    ) ;
+
+	return num_of_games_registered;
 }
 
 size_t
