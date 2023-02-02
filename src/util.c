@@ -6,54 +6,6 @@
 #include "util.h"
 
 size_t
-fact(size_t number)
-{
-	/* This function calculates the factorial of a number */
-
-	if (number == 0)
-		return 1;
-
-	return number * fact(number - 1);
-}
-
-void
-clear_input_buffer(void)
-{
-	scanf("%*c");
-}
-
-size_t
-get_string(char *string, const char *message)
-{
-	/*
-	 * This function receives two parameters:
-	 * one pointer to string that will be mo-
-	 * dified and one pointer to message that
-	 * will be shown on default output.
-	 *
-	 * It returns the amount of characters
-	 * typed by the user.
-	 */
-
-	size_t amount_of_letters = 0;
-	char letter;
-
-	clear_input_buffer();
-
-	printf(message);
-	for (register int i = 0; letter != '\n'; i++) {
-		scanf("%c", &letter);
-		*(string + i) = letter;
-
-		amount_of_letters++;
-	}
-	amount_of_letters--;
-	string[amount_of_letters] = '\0';
-
-	return amount_of_letters;
-}
-
-size_t
 get_amount(String message)
 {
 	char *eptr;

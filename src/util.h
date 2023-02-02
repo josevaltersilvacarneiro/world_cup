@@ -2,9 +2,6 @@
 #include "config.h"
 #endif /* config_h */
 
-size_t fact(size_t number);
-void clear_input_buffer(void);
-size_t get_string(char *string, const char *message);
 size_t get_amount(String message);
 char get_option(const char options[], unsigned int amount_of_options);
 char get_group_with_registered_teams(TEAM *teams, char groups[]);
