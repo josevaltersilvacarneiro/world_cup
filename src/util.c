@@ -228,7 +228,7 @@ number_of_teams_to_register(TEAM *teams)
 	 * ber of teams that was already added.
 	 */
 
-	return AMOUNT_OF_GROUPS * 4 - number_of_teams_registered(teams);
+	return AMOUNT_OF_GROUPS * AMOUNT_OF_TEAMS_PER_GROUP - number_of_teams_registered(teams);
 }
 
 size_t
