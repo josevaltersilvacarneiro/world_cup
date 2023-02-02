@@ -267,5 +267,10 @@ are_all_teams_registered(TEAM *teams)
 bool
 are_all_games_registered(TEAM *teams, GAME *games, char groups[])
 {
+	/*
+	 * If the amount of games registered is less than
+	 * the maximum amount, then all game aren't added
+	 */
+
 	return number_of_games_registered(games) == maximum_amount_of_registered_games(teams, groups);
 }
