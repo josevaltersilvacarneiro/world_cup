@@ -9,8 +9,6 @@
 
 extern char groups[];
 
-extern size_t fact(size_t number);
-
 extern char get_group(char groups[]);
 extern String get_team(const TEAM *teams, bool is_in);
 extern size_t get_date();
@@ -87,7 +85,7 @@ GAME
 			maximum_amount_of_games = maximum_amount_of_registered_games_group(teams, team_one->group);
 
 			/* ↓ Fundamental Counting Theorem ↓ */
-			if (maximum_amount_of_games == fact(AMOUNT_OF_TEAMS_PER_GROUP - 1))
+			if (maximum_amount_of_games == AMOUNT_OF_TEAMS_PER_GROUP * (AMOUNT_OF_TEAMS_PER_GROUP - 1) / 2)
 				puts("All games in this group already were registered");
 			else if (maximum_amount_of_games == get_amount_of_registered_games(games, team_one->group))
 				puts("To register more games in this group, add more teams");
