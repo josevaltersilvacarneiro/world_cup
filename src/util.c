@@ -247,3 +247,9 @@ are_all_teams_registered(TEAM *teams)
 {
 	return number_of_teams_registered(teams) == AMOUNT_OF_GROUPS * AMOUNT_OF_TEAMS_PER_GROUP;
 }
+
+bool
+are_all_games_registered(TEAM *teams, GAME *games, char groups[])
+{
+	return number_of_games_registered(games) == maximum_amount_of_registered_games(teams, groups);
+}
