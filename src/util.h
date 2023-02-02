@@ -10,6 +10,7 @@ size_t get_date();
 
 size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
 size_t maximum_amount_of_registered_games(const TEAM *teams, char groups[]);
+
 size_t get_amount_of_registered_teams(const TEAM *teams, char group);
 size_t get_amount_of_registered_games(GAME *games, char group);
 

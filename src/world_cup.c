@@ -130,9 +130,6 @@ main(int argc, char *argv[])
 		}
 	} while (!quit);
 
-	/*for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
-		free(team_ptr->name);*/
-	
 	free(cup.games);
 	free(cup.teams);
 
