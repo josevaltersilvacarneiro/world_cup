@@ -201,15 +201,7 @@ get_amount_of_registered_games(GAME *games, char group)
 size_t
 number_of_teams_registered(TEAM *teams)
 {
-	size_t number_of_teams_registered = 0;
-
-	for (
-			TEAM *team_ptr = teams->next;
-			team_ptr != NULL;
-			team_ptr = team_ptr->next, number_of_teams_registered++
-	   ) ;
-
-	return number_of_teams_registered;
+	return sizeof(teams) / sizeof(GAME) - 1;
 }
 
 size_t
