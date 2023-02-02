@@ -241,3 +241,9 @@ number_of_games_to_register(const TEAM *teams, GAME *games, char groups[])
 
 	return maximum_amount_of_registered_games(teams, groups) - number_of_games_registered(games);
 }
+
+bool
+are_all_teams_registered(TEAM *teams)
+{
+	return number_of_teams_registered(teams) == AMOUNT_OF_GROUPS * AMOUNT_OF_TEAMS_PER_GROUP;
+}

@@ -18,6 +18,7 @@ char groups[] = {
 };
 
 extern char get_option(const char options[], unsigned int amount_of_options);
+extern bool are_all_teams_registered(TEAM *teams);
 extern TEAM *regist_teams(TEAM *teams);
 extern GAME *regist_games(const TEAM *teams, GAME *games);
 
@@ -35,8 +36,10 @@ regist(CUP *cup)
 	char options[2];
 	char option;
 
-	printf("1 → Register teams\n");
-	options[0] = 't';
+	if (!are_all_teams_registered(cup->teams)) {
+		printf("1 → Register teams\n");
+		options[0] = 't';
+	}
 
 	printf("2 → Register games\n");
 	options[1] = 'g';
