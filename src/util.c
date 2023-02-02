@@ -150,7 +150,9 @@ maximum_amount_of_registered_games_group(const TEAM *teams, char group)
 {
 	/* Fundamental Counting Theorem */
 
-	return fact(get_amount_of_registered_teams(teams, group) - 1);
+	size_t num_of_regist_teams = get_amount_of_registered_teams(teams, group);
+
+	return num_of_regist_teams * (num_of_regist_teams - 1) / 2;
 }
 
 size_t
