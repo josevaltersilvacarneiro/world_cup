@@ -179,7 +179,11 @@ get_amount_of_registered_teams(const TEAM *teams, char group)
 {
 	size_t amount_of_registered_teams = 0;
 
-	for (TEAM *team_ptr = teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
+	for (
+			TEAM *team_ptr = teams->next;
+			team_ptr != NULL && amount_of_registered_teams < AMOUNT_OF_TEAMS_PER_GROUP;
+			team_ptr = team_ptr->next
+	    )
 		if (team_ptr->group == group)
 			amount_of_registered_teams++;
 
