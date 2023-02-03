@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #ifndef config_h
 #include "config.h"
@@ -68,9 +69,21 @@ print_teams(CUP *cup)
 		printf("%15c\n", groups[i]);
 		print_spaces();
 
+		printf("NAME%20sGDGSGC\n", "PT");
+
 		for (TEAM *team_ptr = cup->teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
-			if (team_ptr->group == groups[i])
-				printf("%s\t%u\t%u\t%u\n", team_ptr->name, team_ptr->pt, team_ptr->gs, team_ptr->gc);
+			if (team_ptr->group == groups[i]) {
+				printf("%s", team_ptr->name);
+
+				for (register int i = 22 - strlen(team_ptr->name); i != 0; i--)
+					printf(" ");
+				
+				printf("%2u%2u%2u%2u\n",
+				      team_ptr->pt,
+				      team_ptr->gd,
+				      team_ptr->gs,
+				      team_ptr->gc);
+			}
 	}
 	print_spaces();
 }
