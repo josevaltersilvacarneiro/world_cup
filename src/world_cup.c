@@ -26,7 +26,7 @@ extern TEAM *regist_teams(TEAM *teams);
 extern GAME *regist_games(const TEAM *teams, GAME *games);
 
 void
-print_spaces(void)
+print_hyphens(void)
 {
 	for (register int i = 0; i < AMOUNT_OF_SPACES; i++)
 		printf("-");
@@ -65,9 +65,9 @@ void
 print_teams(CUP *cup)
 {
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
-		print_spaces();
+		print_hyphens();
 		printf("%15c\n", groups[i]);
-		print_spaces();
+		print_hyphens();
 
 		printf("NAME%20sGDGSGC\n", "PT");
 
@@ -85,7 +85,7 @@ print_teams(CUP *cup)
 				      team_ptr->gc);
 			}
 	}
-	print_spaces();
+	print_hyphens();
 }
 
 int
