@@ -65,7 +65,7 @@ print_teams(CUP *cup)
 {
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
 		print_spaces();
-		printf("%c\n", groups[i]);
+		printf("%15c\n", groups[i]);
 		print_spaces();
 
 		for (TEAM *team_ptr = cup->teams->next; team_ptr != NULL; team_ptr = team_ptr->next)
