@@ -34,6 +34,13 @@ print_hyphens(void)
 }
 
 void
+print_spaces(size_t amount)
+{
+	for (register int i = amount; i != 0; i--)
+		printf(" ");
+}
+
+void
 regist(CUP *cup)
 {
 	char options[2];
@@ -75,8 +82,7 @@ print_teams(CUP *cup)
 			if (team_ptr->group == groups[i]) {
 				printf("%s", team_ptr->name);
 
-				for (register int i = 22 - strlen(team_ptr->name); i != 0; i--)
-					printf(" ");
+				print_spaces(22 - strlen(team_ptr->name));
 				
 				printf("%2u%2u%2u%2u\n",
 				      team_ptr->pt,
