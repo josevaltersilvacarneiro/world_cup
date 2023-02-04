@@ -18,6 +18,9 @@ char groups[] = {
         'H',
 };
 
+extern CUP *get_data(void);
+extern void push_data(CUP *cup);
+
 extern char get_option(const char options[], unsigned int amount_of_options);
 extern bool are_all_teams_registered(TEAM *teams);
 extern bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
@@ -98,13 +101,9 @@ int
 main(int argc, char *argv[])
 {
 	bool quit;
-	CUP cup;
+	CUP *cup;
 
-	cup.teams = calloc(1, sizeof(TEAM));
-	cup.teams->next = NULL;
-
-	cup.games = calloc(1, sizeof(GAME));
-	cup.games->next = NULL;
+	cup = get_data();
 
 	quit = false;
 	do {
@@ -127,7 +126,7 @@ main(int argc, char *argv[])
 
 		switch (option) {
 			case 'r':
-				regist(&cup);
+				regist(cup);
 				break;
 			case 'e':
 				printf("Editing...\n");
@@ -139,7 +138,7 @@ main(int argc, char *argv[])
 			case 'n':
 				break;
 			case 'p':
-				print_teams(&cup);
+				print_teams(cup);
 				break;
 			case 'w':
 				break;
@@ -149,8 +148,7 @@ main(int argc, char *argv[])
 		}
 	} while (!quit);
 
-	free(cup.games);
-	free(cup.teams);
+	push_data(cup);
 
 	return 0;
 }
