@@ -5,6 +5,27 @@
 
 #include "util.h"
 
+/* Conversion functions */
+
+TEAM
+*convert_to_team_ptr(const TEAM *teams, const String team_name)
+{
+	/*
+	 * This function receives two parameters: a array of
+	 * TEAM structure and the team name. In the end, it
+	 * returns a pointer to the structure that corres-
+	 * ponds to the name passed as argument.
+	 */
+
+	TEAM *team_ptr = NULL;
+
+	for (team_ptr = teams->next; team_ptr != NULL; team_ptr = teams->next)
+		if (!strcmp(team_name, team_ptr->name))
+			return team_ptr;
+
+	return team_ptr;
+}
+
 size_t
 get_amount(String message)
 {
