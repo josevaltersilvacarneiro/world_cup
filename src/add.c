@@ -4,8 +4,6 @@
 
 /* See util.c */
 
-extern TEAM *convert_to_team_ptr(const TEAM *teams, const String team_name);
-
 extern size_t number_of_teams_registered(TEAM *teams);
 extern size_t number_of_games_registered(GAME *games);
 
@@ -52,20 +50,15 @@ void
 add_game(
 		const TEAM *teams,
 		GAME *games,
-		const String first_team_name,
-		const String second_team_name,
+		const TEAM *team_one,
+		const TEAM *team_two,
 		const unsigned short team_one_goals,
 		const unsigned short team_two_goals,
 		const unsigned int date
 	)
 {
 	GAME *_games = games; /* backup */
-	TEAM *team_one;
-	TEAM *team_two;
 	GAME *last_game;
-
-	team_one = convert(teams, first_team_name);
-	team_two = convert(teams, second_team_name);
 
 	/* Add the match to the corresponding group */
 
