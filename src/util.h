@@ -2,6 +2,10 @@
 #include "config.h"
 #endif /* config_h */
 
+/* Conversion functions */
+
+TEAM *convert_to_team_ptr(const TEAM *teams, const String team_name);
+
 size_t get_amount(String message);
 char get_option(const char options[], unsigned int amount_of_options);
 char get_group_with_registered_teams(TEAM *teams, char groups[]);
