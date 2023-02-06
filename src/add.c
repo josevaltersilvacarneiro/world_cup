@@ -9,8 +9,8 @@
 extern size_t number_of_teams_registered(TEAM *teams);
 extern size_t number_of_games_registered(GAME *games);
 
-void
-add_team(
+TEAM
+*add_team(
 		TEAM *teams,
 		const char group,
 		const String team,
@@ -46,10 +46,12 @@ add_team(
 	last_team->gd    = gd;
 	
 	last_team->next  = NULL;
+
+	return teams;
 }
 
-void
-add_game(
+GAME
+*add_game(
 		const TEAM *teams,
 		GAME *games,
 		const TEAM *team_one,
@@ -82,4 +84,6 @@ add_game(
         last_game->team_one_goals = team_one_goals;
         last_game->team_two_goals = team_two_goals;
         last_game->date = date;
+
+	return games;
 }
