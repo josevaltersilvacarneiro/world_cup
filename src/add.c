@@ -4,7 +4,7 @@
 
 /* See util.c */
 
-extern TEAM *convert(const TEAM *teams, const String team_name);
+extern TEAM *convert_to_team_ptr(const TEAM *teams, const String team_name);
 
 extern size_t number_of_teams_registered(TEAM *teams);
 extern size_t number_of_games_registered(GAME *games);
