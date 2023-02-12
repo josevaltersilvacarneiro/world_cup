@@ -6,8 +6,25 @@
 
 typedef char *String;
 
-size_t amount_of_strings = 0;
-char **strings 		 = NULL;
+struct string {
+	String str;
+	size_t references;
+
+	struct string *next;
+};
+
+struct string *first_string; /* search */
+struct string *last_string; /* append */
+
+void
+start_string(void)
+{
+	first_string = calloc(1, sizeof(struct string *));
+	first_string->next = NULL;
+
+	last_string = calloc(1, sizeof(struct string *));
+	last_string->next = NULL;
+}
 
 String
 input(const String message)
@@ -18,6 +35,8 @@ input(const String message)
 	 * output and returns a pointer to
 	 * string typed by the user.
          */
+
+	struct string *new_string;
 
         size_t amount_of_letters;
 	char letter = '\0';
@@ -31,12 +50,22 @@ input(const String message)
 	amount_of_letters--;
 	string[amount_of_letters] = '\0';
 
-	strings = realloc(strings, sizeof(String) * (amount_of_strings + 1));
-	strings[amount_of_strings] = calloc(amount_of_letters + 1, sizeof(char));
-	strncpy(strings[amount_of_strings], string, amount_of_letters + 1);
+	/* Storing */
 
-	return strings[amount_of_strings++];
+	new_string = calloc(1, sizeof(struct string *));
+	new_string->str = calloc(amount_of_letters + 1, sizeof(char));
+	strncpy(new_string->str, string, amount_of_letters + 1);
+	new_string->references = 1;
+
+	last_string->next = new_string;  /* The penultimate string receives the address for the next string */
+
+	last_string = last_string->next; /* The last string now is the new string */
+	last_string->next = NULL;
+
+	return new_string->str;
 }
+
+
 /*
 int
 main(int argc, char *argv[])

@@ -18,6 +18,8 @@ char groups[] = {
         'H',
 };
 
+extern void start_string();
+
 extern CUP *get_data(void);
 extern void push_data(CUP *cup);
 
@@ -102,6 +104,8 @@ main(int argc, char *argv[])
 {
 	bool quit;
 	CUP *cup;
+
+	start_string();
 
 	cup = get_data();
 
