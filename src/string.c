@@ -65,3 +65,14 @@ input(const String message)
 	return new_string->str;
 }
 
+void
+destroy_string(void)
+{
+	struct string *next;
+
+	for (; first_string != NULL;) {
+		next = first_string->next;
+		free(first_string);
+		first_string = next;
+	}
+}

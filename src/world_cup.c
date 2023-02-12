@@ -19,6 +19,7 @@ char groups[] = {
 };
 
 extern void start_string();
+extern void destroy_string();
 
 extern CUP *get_data(void);
 extern void push_data(CUP *cup);
@@ -153,6 +154,8 @@ main(int argc, char *argv[])
 	} while (!quit);
 
 	push_data(cup);
+
+	destroy_string();
 
 	return 0;
 }
