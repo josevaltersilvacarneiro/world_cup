@@ -54,8 +54,8 @@ GAME
 *add_game(
 		const TEAM *teams,
 		GAME *games,
-		const TEAM *team_one,
-		const TEAM *team_two,
+		TEAM *team_one,
+		TEAM *team_two,
 		const unsigned short team_one_goals,
 		const unsigned short team_two_goals,
 		const unsigned int date
