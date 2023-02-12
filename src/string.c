@@ -65,17 +65,3 @@ input(const String message)
 	return new_string->str;
 }
 
-
-/*
-int
-main(int argc, char *argv[])
-{
-	String first_name, last_name;
-	
-	first_name = input("Type your first name: ");
-	last_name  = input("Type your last name: ");
-
-	printf("Your name is: %s %s %d\n", first_name, last_name, amount_of_strings);
-	return 0;
-}
-*/
