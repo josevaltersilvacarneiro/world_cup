@@ -11,6 +11,7 @@ char get_option(const char options[], unsigned int amount_of_options);
 char get_group_with_registered_teams(TEAM *teams, char groups[]);
 String get_team(const TEAM *teams, bool is_in);
 size_t get_date();
+String get_place(void);
 
 size_t maximum_amount_of_registered_games_group(const TEAM *teams, char group);
 size_t maximum_amount_of_registered_games(const TEAM *teams, char groups[]);

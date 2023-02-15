@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <stdbool.h>
 
 #include "util.h"
@@ -103,6 +104,19 @@ size_t
 get_date()
 {
 	return 0;
+}
+
+String
+get_place(void)
+{
+	String place = input("Place: ");
+
+	/* Converting to uppercase */
+
+	for (register int i = 0; i < strlen(place); i++)
+		place[i] = toupper(place[i]);
+
+	return place;
 }
 
 size_t
