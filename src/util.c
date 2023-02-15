@@ -74,19 +74,6 @@ get_group(char groups[])
 	return *group;
 }
 
-char
-get_group_with_registered_teams(TEAM *teams, char groups[])
-{
-	char group;
-
-	for (;;) {
-		group = get_group(groups);
-
-		if (get_amount_of_registered_teams(teams, group) > 1)
-			return group;
-	}
-}
-
 String
 get_team(const TEAM *teams, bool is_in)
 {
