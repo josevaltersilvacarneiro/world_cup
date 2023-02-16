@@ -6,9 +6,6 @@
 
 /* See util.c */
 
-extern size_t number_of_teams_registered(TEAM *teams);
-extern size_t number_of_games_registered(GAME *games);
-
 TEAM
 *add_team(
 		TEAM *teams,
@@ -20,32 +17,28 @@ TEAM
 		const int gd
 	)
 {
-	TEAM *_teams = teams; /* backup */
 	TEAM *last_team;
+	TEAM *new_team;
 
 	/* Adding a new team */
 
-	teams = realloc(
-				teams,
-				(number_of_teams_registered(teams) + 2) * sizeof(TEAM)
-		       );
+	new_team = calloc(1, sizeof(TEAM));
 
-	if (!teams)
-		return _teams; /* There wasn't enough memory */
+	if (!new_team)
+		return teams; /* There wasn't enough memory */
+
+        new_team->group = group;
+        new_team->name  = team;
+        new_team->pt    = pt;
+        new_team->gs    = gs;
+        new_team->gc    = gc;
+	new_team->gd    = gd;
+	
+	new_team->next  = NULL;
 
         for (last_team = teams; last_team->next != NULL; last_team = last_team->next) ;
 
-        last_team->next = last_team + 1;
-        last_team++;
-
-        last_team->group = group;
-        last_team->name  = team;
-        last_team->pt    = pt;
-        last_team->gs    = gs;
-        last_team->gc    = gc;
-	last_team->gd    = gd;
-	
-	last_team->next  = NULL;
+        last_team->next = new_team;
 
 	return teams;
 }
@@ -62,30 +55,28 @@ GAME
 		const String place
 	)
 {
-	GAME *_games = games; /* backup */
 	GAME *last_game;
+	GAME *new_game;
 
 	/* Add the match to the corresponding group */
 
-	games = realloc(
-				games,
-				(number_of_games_registered(games) + 2) * sizeof(GAME)
-			);
+	new_game = calloc(1, sizeof(GAME));
 
-	if (!games)
-		return _games; /* There wasn't enough memory */
+	if (!new_game)
+		return games; /* There wasn't enough memory */
 
-        for (last_game = games->next; last_game->next != NULL; last_game = last_game->next) ;
+        new_game->team_one	  = team_one;
+        new_game->team_two	  = team_two;
+        new_game->team_one_goals  = team_one_goals;
+        new_game->team_two_goals  = team_two_goals;
+        new_game->date		  = date;
+	new_game->place		  = place;
 
-        last_game->next = last_game + 1;
-        last_game++;
+	new_game->next		  = NULL;
 
-        last_game->team_one	  = team_one;
-        last_game->team_two	  = team_two;
-        last_game->team_one_goals = team_one_goals;
-        last_game->team_two_goals = team_two_goals;
-        last_game->date		  = date;
-	last_game->place	  = place;
+        for (last_game = games; last_game->next != NULL; last_game = last_game->next) ;
+
+        last_game->next = new_game;
 
 	/* ------------ */
 	/* calc ranking */
