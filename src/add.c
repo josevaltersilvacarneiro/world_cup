@@ -85,5 +85,28 @@ GAME
         last_game->team_two_goals = team_two_goals;
         last_game->date = date;
 
+	/* ------------ */
+	/* calc ranking */
+
+	if (team_one_goals > team_two_goals)
+		team_one->pt += 3;
+	else if (team_one_goals == team_two_goals) {
+		team_one->pt += 1;
+		team_two->pt += 1;
+	} else
+		team_two->pt += 3;
+
+	/* team_one */
+
+	team_one->gs += team_one_goals;
+	team_one->gc += team_two_goals;
+	team_one->gd += team_one_goals - team_two_goals;
+
+	/* team_two */
+
+	team_two->gs += team_two_goals;
+	team_two->gc += team_one_goals;
+	team_two->gd += team_two_goals - team_one_goals;
+
 	return games;
 }
