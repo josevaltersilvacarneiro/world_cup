@@ -34,10 +34,8 @@ static TEAM
 	size_t pos = 0;
 
 	for (TEAM *team_ptr = first_team->next; team_ptr != NULL; team_ptr = team_ptr->next, pos += 1)
-		if (pos == position) {
-	printf("%p\n", team_ptr);
+		if (pos == position)
 			return team_ptr;
-		}
 
 	return NULL;
 }
