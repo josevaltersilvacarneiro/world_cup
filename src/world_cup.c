@@ -31,6 +31,8 @@ extern bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
 extern TEAM *regist_teams(TEAM *teams);
 extern GAME *regist_games(const TEAM *teams, GAME *games);
 
+extern void sort_classification(TEAM *first_team);
+
 void
 print_hyphens(void)
 {
@@ -77,6 +79,8 @@ regist(CUP *cup)
 void
 print_teams(CUP *cup)
 {
+	sort_classification(cup->teams);
+
 	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
 		print_hyphens();
 		printf("%15c\n", groups[i]);
