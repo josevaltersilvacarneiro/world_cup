@@ -58,7 +58,8 @@ GAME
 		TEAM *team_two,
 		const unsigned short team_one_goals,
 		const unsigned short team_two_goals,
-		const unsigned int date
+		const unsigned int date,
+		const String place
 	)
 {
 	GAME *_games = games; /* backup */
@@ -79,11 +80,12 @@ GAME
         last_game->next = last_game + 1;
         last_game++;
 
-        last_game->team_one = team_one;
-        last_game->team_two = team_two;
+        last_game->team_one	  = team_one;
+        last_game->team_two	  = team_two;
         last_game->team_one_goals = team_one_goals;
         last_game->team_two_goals = team_two_goals;
-        last_game->date = date;
+        last_game->date		  = date;
+	last_game->place	  = place;
 
 	/* ------------ */
 	/* calc ranking */

@@ -7,15 +7,16 @@
 #include "config.h"
 #endif
 
-extern char groups[];
+extern char   groups[];
 
-extern TEAM *convert_to_team_ptr(const TEAM *teams, const String team_name);
+extern TEAM  *convert_to_team_ptr(const TEAM *teams, const String team_name);
 
-extern char get_group(char groups[]);
+extern char   get_group(char groups[]);
 extern String get_team(const TEAM *teams, bool is_in);
 extern size_t get_date();
+extern String get_place();
 
-extern TEAM *add_team(
+extern TEAM  *add_team(
 			TEAM *teams,
 			const char group,
 			const String team,
@@ -25,14 +26,15 @@ extern TEAM *add_team(
 			const unsigned int gd
 		    );
 
-extern GAME *add_game(
+extern GAME  *add_game(
 			const TEAM *teams,
 			GAME *games,
 			TEAM *team_one,
 			TEAM *team_two,
 			const unsigned short team_one_goals,
 			const unsigned short team_two_goals,
-			const unsigned int date
+			const unsigned int date,
+			String place
 		    );
 
 extern size_t get_amount_of_registered_teams(TEAM *teams, char group);
@@ -71,6 +73,7 @@ GAME
 	TEAM *team_two;
 	unsigned short team_one_goals, team_two_goals;
 	size_t date;
+	String place;
 
 	GAME *last_game;
 
@@ -99,6 +102,7 @@ GAME
 	team_one_goals = get_amount("Number of goals for first team: ");
 	team_two_goals = get_amount("Number of goals for second team: ");
 	date = get_date();
+	place = get_place();
 
 	return add_game(
 			teams,
@@ -107,7 +111,8 @@ GAME
 			team_two,
 			team_one_goals,
 			team_two_goals,
-			date
+			date,
+			place
 		); /* See add.c */
 }
 
