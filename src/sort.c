@@ -6,7 +6,7 @@
 
 extern size_t number_of_teams_registered(TEAM *teams);
 
-TEAM
+static TEAM
 *get_team_in_position(TEAM *first_team, size_t position)
 {
 	size_t pos = 0;
@@ -18,7 +18,7 @@ TEAM
 	return NULL;
 }
 
-void
+static void
 switch_teams(TEAM *first_team, TEAM *team_one, TEAM *team_two)
 {
 	TEAM *team_aux;
