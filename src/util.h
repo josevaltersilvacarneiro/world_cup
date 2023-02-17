@@ -28,4 +28,6 @@ size_t number_of_games_to_register(const TEAM *teams, GAME *games, char groups[]
 bool are_all_teams_registered(TEAM *teams);
 bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
 
+bool is_any_game_registered(GAME *first_game);
+
 extern String input(const String message);

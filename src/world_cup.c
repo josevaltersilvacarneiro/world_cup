@@ -25,11 +25,17 @@ extern CUP *get_data(void);
 extern void push_data(CUP *cup);
 
 extern char get_option(const char options[], unsigned int amount_of_options);
+
 extern bool are_all_teams_registered(TEAM *teams);
 extern bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
 
+extern bool is_any_game_registered(GAME *first_game);
+
 extern TEAM *regist_teams(TEAM *teams);
 extern GAME *regist_games(const TEAM *teams, GAME *games);
+
+extern void edit_team(TEAM *first_team);
+extern void edit_game(TEAM *first_team, GAME *first_game);
 
 extern void sort_classification(TEAM *first_team);
 
@@ -72,6 +78,32 @@ regist(CUP *cup)
 			break;
 		case 'g':
 			cup->games = regist_games(cup->teams, cup->games);
+			break;
+	}
+}
+
+void
+edit(CUP *cup)
+{
+	char option;
+	char options[2];
+
+	printf("1 → Edit team\n");
+	options[0] = 't';
+
+	if (is_any_game_registered(cup->games)) {
+		printf("2 → Edit game\n");
+		options[1] = 'g';
+	}
+
+	option = get_option(options, 2);
+
+	switch (option) {
+		case 't':
+			edit_team(cup->teams);
+			break;
+		case 'g':
+			edit_game(cup->teams, cup->games);
 			break;
 	}
 }
@@ -121,6 +153,9 @@ main(int argc, char *argv[])
 
 		printf("1 → Register\n");
 		options[0] = 'r';
+
+		printf("2 → Edit\n");
+		options[1] = 'e';
 		
 		printf("6 → Show the teams\n");
 		options[5] = 'p';
@@ -138,7 +173,7 @@ main(int argc, char *argv[])
 				regist(cup);
 				break;
 			case 'e':
-				printf("Editing...\n");
+				edit(cup);
 				break;
 			case 'd':
 				break;
