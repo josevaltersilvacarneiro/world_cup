@@ -160,4 +160,6 @@ GAME
 
 	while (amount_of_games-- > 0)
 		games = regist_game(teams, games);
+
+	return games;
 }
