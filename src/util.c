@@ -18,9 +18,9 @@ TEAM
 	 * ponds to the name passed as argument.
 	 */
 
-	TEAM *team_ptr = NULL;
+	TEAM *team_ptr = teams->next;
 
-	for (team_ptr = teams->next; team_ptr != NULL; team_ptr = teams->next)
+	for (; team_ptr != NULL; team_ptr = team_ptr->next)
 		if (!strcmp(team_name, team_ptr->name))
 			return team_ptr;
 
