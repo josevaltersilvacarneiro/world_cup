@@ -75,7 +75,7 @@ sort_classification(TEAM *first_team)
 			key = copy_team(first_team, i); /* alloc */
 			j = i;
 			
-			while (j >= h && get_team_in_position(first_team, j - h)->pt > key->pt) {
+			while (j >= h && get_team_in_position(first_team, j - h)->pt < key->pt) {
 				switch_teams(
 						first_team,
 						get_team_in_position(first_team, j),
