@@ -72,7 +72,7 @@ sort_classification(TEAM *first_team)
 
 	while (h > 0) {
 		for (register int i = h; i < length; i++) {
-			key = copy_team(first_team, i);
+			key = copy_team(first_team, i); /* alloc */
 			j = i;
 			
 			while (j >= h && get_team_in_position(first_team, j - h)->pt > key->pt) {
@@ -89,7 +89,7 @@ sort_classification(TEAM *first_team)
 					key
 				    );
 
-			free(key);
+			free(key); /* free */
 		}
 		h /= 2;
 	}
