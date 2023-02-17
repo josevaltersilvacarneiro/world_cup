@@ -88,21 +88,23 @@ push_data(CUP *cup)
 void
 free_teams(TEAM *first_team)
 {
-	TEAM *before_team_ptr = first_team;
+	TEAM *next;
 
-	for (TEAM *team_ptr = first_team->next; before_team_ptr != NULL; team_ptr = team_ptr->next) {
-		free(before_team_ptr);
-		before_team_ptr = team_ptr;
+	for (; first_team != NULL; ) {
+		next = first_team->next;
+		free(first_team);
+		first_team = next;
 	}
 }
 
 void
 free_games(GAME *first_game)
 {
-	GAME *before_game_ptr = first_game;
+	GAME *next;
 
-	for (GAME *game_ptr = first_game->next; before_game_ptr != NULL; game_ptr = game_ptr->next) {
-		free(before_game_ptr);
-		before_game_ptr = game_ptr;
+	for (; first_game != NULL; ) {
+		next = first_game->next;
+		free(first_game);
+		first_game = next;
 	}
 }
