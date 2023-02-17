@@ -30,6 +30,8 @@ static TEAM
 	team_cpy->gd = team->gd;
 
 	team_cpy->next = NULL;
+	
+	return team_cpy;
 }
 
 static TEAM
