@@ -24,10 +24,11 @@ static TEAM
 		exit(1);
 	}
 
-	team_cpy->pt = team->pt;
-	team_cpy->gs = team->gs;
-	team_cpy->gc = team->gc;
-	team_cpy->gd = team->gd;
+	team_cpy->name = team->name;
+	team_cpy->pt   = team->pt;
+	team_cpy->gs   = team->gs;
+	team_cpy->gc   = team->gc;
+	team_cpy->gd   = team->gd;
 
 	team_cpy->next = NULL;
 	
@@ -49,10 +50,11 @@ static TEAM
 static void
 switch_teams(TEAM *first_team, TEAM *team_one, TEAM *team_two)
 {
-	team_one->pt = team_two->pt;
-	team_one->gs = team_two->gs;
-	team_one->gc = team_two->gc;
-	team_one->gd = team_two->gd;
+	team_one->name = team_two->name;
+	team_one->pt   = team_two->pt;
+	team_one->gs   = team_two->gs;
+	team_one->gc   = team_two->gc;
+	team_one->gd   = team_two->gd;
 }
 
 void
