@@ -94,7 +94,7 @@ print_teams(CUP *cup)
 
 				print_spaces(22 - strlen(team_ptr->name));
 				
-				printf("%2u%2u%2u%2u\n",
+				printf("%2u%2d%2u%2u\n",
 				      team_ptr->pt,
 				      team_ptr->gd,
 				      team_ptr->gs,
