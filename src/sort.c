@@ -20,6 +20,10 @@ static TEAM
 
 	team_cpy = calloc(1, sizeof(TEAM));
 
+	if (team_cpy == NULL) {
+		exit(1);
+	}
+
 	team_cpy->pt = team->pt;
 	team_cpy->gs = team->gs;
 	team_cpy->gc = team->gc;
@@ -43,24 +47,10 @@ static TEAM
 static void
 switch_teams(TEAM *first_team, TEAM *team_one, TEAM *team_two)
 {
-	TEAM *before_team_one = NULL;
-	TEAM *before_team_two = NULL;
-
-	for (TEAM *team_ptr = first_team; team_ptr != NULL; team_ptr = team_ptr->next) {
-		if (team_ptr->next == team_one)
-			before_team_one = team_ptr;
-		else if (team_ptr->next == team_two)
-			before_team_two = team_ptr;
-
-		if (before_team_one != NULL && before_team_two != NULL)
-			break;
-	}
-
-	before_team_one->next = team_two;
-	before_team_two->next = team_two->next; /* Skip team_two element */
-	team_two->next	      = team_one->next;
-
-	free(team_one); /* Free the memory */
+	team_one->pt = team_two->pt;
+	team_one->gs = team_two->gs;
+	team_one->gc = team_two->gc;
+	team_one->gd = team_two->gd;
 }
 
 void
@@ -94,6 +84,8 @@ sort_classification(TEAM *first_team)
 					get_team_in_position(first_team, j),
 					key
 				    );
+
+			free(key);
 		}
 		h /= 2;
 	}
