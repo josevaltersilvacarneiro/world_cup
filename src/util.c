@@ -252,7 +252,7 @@ are_all_games_registered(TEAM *teams, GAME *games, char groups[])
 bool
 is_any_game_registered(GAME *first_game)
 {
-	return number_of_games_registered(first_game) > 0;
+	return first_game->next != NULL;
 }
 
 bool
