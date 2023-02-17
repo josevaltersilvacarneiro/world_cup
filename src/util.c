@@ -254,3 +254,9 @@ is_any_game_registered(GAME *first_game)
 {
 	return number_of_games_registered(first_game) > 0;
 }
+
+bool
+is_any_team_registered(TEAM *first_team)
+{
+	return first_team->next != NULL;
+}

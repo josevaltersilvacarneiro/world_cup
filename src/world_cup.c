@@ -30,6 +30,7 @@ extern bool are_all_teams_registered(TEAM *teams);
 extern bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
 
 extern bool is_any_game_registered(GAME *first_game);
+extern bool is_any_team_registered(TEAM *first_team);
 
 extern TEAM *regist_teams(TEAM *teams);
 extern GAME *regist_games(const TEAM *teams, GAME *games);
@@ -154,8 +155,10 @@ main(int argc, char *argv[])
 		printf("1 → Register\n");
 		options[0] = 'r';
 
-		printf("2 → Edit\n");
-		options[1] = 'e';
+		if (is_any_team_registered(cup->teams)) {
+			printf("2 → Edit\n");
+			options[1] = 'e';
+		}
 		
 		printf("6 → Show the teams\n");
 		options[5] = 'p';

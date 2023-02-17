@@ -29,5 +29,6 @@ bool are_all_teams_registered(TEAM *teams);
 bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
 
 bool is_any_game_registered(GAME *first_game);
+bool is_any_team_registered(TEAM *first_team);
 
 extern String input(const String message);
