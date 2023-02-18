@@ -6,6 +6,8 @@
 
 TEAM *convert_to_team_ptr(const TEAM *teams, const String team_name);
 
+bool check(const String message);
+
 size_t get_amount(String message);
 char get_option(const char options[], unsigned int amount_of_options);
 char get_group_with_registered_teams(TEAM *teams, char groups[]);

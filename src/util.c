@@ -27,6 +27,23 @@ TEAM
 	return team_ptr;
 }
 
+bool
+check(String message)
+{
+	/*
+	 * This function waits for the user
+	 * to type y or N for the question
+	 * passed as argument and returns
+	 * true (y) or false (any).
+	 */
+
+	String check;
+
+	check = input(message);
+
+	return *check == 'Y';
+}
+	
 size_t
 get_amount(String message)
 {
