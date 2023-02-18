@@ -1,3 +1,8 @@
+/*
+ * The functions and procedures of this file are responsible
+ * for editing the teams and games.
+ */
+
 #include <stdio.h>
 
 #ifndef config_h
