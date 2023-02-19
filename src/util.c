@@ -27,6 +27,21 @@ TEAM
 	return team_ptr;
 }
 
+GAME
+*find_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two)
+{
+	GAME *game = NULL;
+
+	for (GAME *game_ptr = first_game; game_ptr != NULL; game_ptr = game_ptr->next)
+		if (
+			(game_ptr->team_one == team_one && game_ptr->team_two == team_two) ||
+			(game_ptr->team_two == team_one && game_ptr->team_one == team_two)
+		   )
+			return game_ptr;
+
+	return game;
+}
+
 bool
 check(String message)
 {
