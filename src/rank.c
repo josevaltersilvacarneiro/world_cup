@@ -27,7 +27,7 @@ handle_game(GAME *game, char option)
         /* team_two */
 
         game->team_two->gs += (option == '+') ? game->team_two_goals : -game->team_two_goals;
-        game->team_two->gc += (option == '+') ? game->team_two_goals : -game->team_two_goals;
+        game->team_two->gc += (option == '+') ? game->team_one_goals : -game->team_one_goals;
         game->team_two->gd  = game->team_two->gs - game->team_two->gc;
 }
 
