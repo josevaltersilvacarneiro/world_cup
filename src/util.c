@@ -12,7 +12,7 @@ TEAM
 *convert_to_team_ptr(const TEAM *teams, const String team_name)
 {
 	/*
-	 * This function receives two parameters: a array of
+	 * This function receives two parameters: a linked list of
 	 * TEAM structure and the team name. In the end, it
 	 * returns a pointer to the structure that corres-
 	 * ponds to the name passed as argument.
