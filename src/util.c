@@ -30,6 +30,13 @@ TEAM
 GAME
 *find_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two)
 {
+	/*
+	 * This function receives three parameters: a linked list of
+	 * GAME structure and two pointers to TEAM structure. In the
+	 * end, it returns a pointer to the structure that corres-
+	 * ponds to the team structures passed as arguments.
+	 */
+
 	GAME *game = NULL;
 
 	for (GAME *game_ptr = first_game; game_ptr != NULL; game_ptr = game_ptr->next)
