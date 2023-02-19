@@ -58,7 +58,7 @@ edit_game(TEAM *first_team, GAME *first_game)
 {
 	TEAM *team_one;
 	TEAM *team_two;
-	String message = "Do you really want to replace first team vs second team";
+	String message = "Do you really want to change first team vs second team";
 
 	ed_gam:
 		team_one = convert_to_team_ptr(first_team, get_team(first_team, true));
@@ -75,6 +75,12 @@ edit_game(TEAM *first_team, GAME *first_game)
 		char option;
 	
 		game = find_game(first_game, team_one, team_two);
+
+		printf("1 → The number of goals for team %s is wrong\n", team_one->name);
+		printf("2 → The number of goals for team %s is wrong\n", team_two->name);
+
+		puts("3 → The time is wrong");
+		puts("4 → The place is wrong");
 
 		option = get_option(options, 4);
 
