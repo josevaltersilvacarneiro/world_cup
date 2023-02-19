@@ -84,22 +84,24 @@ edit_game(TEAM *first_team, GAME *first_game)
 			case 'o':
 				number_of_goals = get_amount("Number of goals for team one");
 
+				unscramble_game(game); /* This doesn't exclude the game */
+
 				if (game->team_one == team_one)
 					game->team_one_goals = number_of_goals;
 				else if (game->team_two == team_one)
 					game->team_two_goals = number_of_goals;
 				
-				unscramble_game(game); /* This doesn't exclude the game */
 				break;
 			case 't':
 				number_of_goals = get_amount("Number of goals for team two");
+
+				unscramble_game(game); /* This doesn't exclude the game */
 
 				if (game->team_one == team_two)
 					game->team_one_goals = number_of_goals;
 				else if (game->team_two == team_two)
 					game->team_two_goals = number_of_goals;
 
-				unscramble_game(game); /* This doesn't exclude the game */
 				break;
 			case 'm':
 				game->date = get_date();
