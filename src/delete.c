@@ -22,7 +22,7 @@ real_delete_game(GAME *before_game)
 
 	unscramble_game(game);
 
-	/* This game isn't the last */
+	/* If this game isn't the last, it receives the next game; else NULL */
 	before_game->next = (game->next != NULL) ? game->next : NULL;
 
 	free(game);
