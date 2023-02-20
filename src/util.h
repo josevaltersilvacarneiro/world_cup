@@ -5,6 +5,10 @@
 /* Conversion functions */
 
 TEAM *convert_to_team_ptr(const TEAM *teams, const String team_name);
+TEAM *convert_to_before_team_ptr(TEAM *teams, const String team_name);
+
+GAME *find_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two);
+GAME *find_before_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two);
 
 bool check(const String message);
 

@@ -27,6 +27,20 @@ TEAM
 	return team_ptr;
 }
 
+TEAM
+*convert_to_before_team_ptr(TEAM *first_team, const String team_name)
+{
+	/* See convert_to_team_ptr */
+
+	TEAM *team_ptr = first_team;
+
+	for (; team_ptr->next != NULL; team_ptr = team_ptr->next)
+		if (!strcmp(team_name, team_ptr->next->name))
+			return team_ptr;
+
+	return NULL;
+}
+
 GAME
 *find_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two)
 {
@@ -43,6 +57,23 @@ GAME
 		if (
 			(game_ptr->team_one == team_one && game_ptr->team_two == team_two) ||
 			(game_ptr->team_two == team_one && game_ptr->team_one == team_two)
+		   )
+			return game_ptr;
+
+	return game;
+}
+
+GAME
+*find_before_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two)
+{
+	/* See find_game */
+
+	GAME *game = NULL;
+
+	for (GAME *game_ptr = first_game; game_ptr->next != NULL; game_ptr = game_ptr->next)
+		if (
+			(game_ptr->next->team_one == team_one && game_ptr->next->team_two == team_two) ||
+			(game_ptr->next->team_two == team_one && game_ptr->next->team_one == team_two)
 		   )
 			return game_ptr;
 
