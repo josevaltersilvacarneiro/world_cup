@@ -1,6 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 #ifndef config_h
 #include "config.h"
 #endif /* config_h */
+
+extern TEAM  *convert_to_team_ptr(TEAM *first_team, const String team_name);
+extern TEAM  *convert_to_before_team_ptr(TEAM *first_team, const String team_name);
+
+extern GAME  *find_before_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two);
+
+extern String get_team(TEAM *first_team, bool is_in);
+
+extern void   unscramble_game(GAME *game);
 
 static void
 real_delete_game(GAME *before_game)
@@ -35,7 +48,7 @@ delete_team(TEAM *first_team, GAME *first_game)
 }
 
 void
-delete_game(TEAM, *first_team, GAME *first_game)
+delete_game(TEAM *first_team, GAME *first_game)
 {
 	TEAM *team_one;
 	TEAM *team_two;
@@ -54,5 +67,5 @@ delete_game(TEAM, *first_team, GAME *first_game)
 		goto del_gam;
 	}
 
-	real_delete_game(game);
+	real_delete_game(before_game);
 }
