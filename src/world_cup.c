@@ -38,6 +38,9 @@ extern GAME *regist_games(const TEAM *teams, GAME *games);
 extern void edit_team(TEAM *first_team);
 extern void edit_game(TEAM *first_team, GAME *first_game);
 
+extern void delete_team(TEAM *first_team, GAME *first_game);
+extern void delete_game(TEAM *first_team, GAME *first_game);
+
 extern void sort_classification(TEAM *first_team);
 
 void
@@ -110,6 +113,31 @@ edit(CUP *cup)
 }
 
 void
+delete(CUP *cup)
+{
+	char option;
+	char options[2];
+
+	puts("1 → Delete team");
+	options[0] = 't';
+
+	if (is_any_game_registered(cup->games)) {
+		puts("2 → Delete game");
+		options[1] = 'g';
+	}
+
+	option = get_option(options, 2);
+
+	switch (option) {
+		case 't':
+			delete_team(cup->teams, cup->games);
+			break;
+		case 'g':
+			delete_game(cup->teams, cup->games);
+	}
+}
+
+void
 print_teams(CUP *cup)
 {
 	sort_classification(cup->teams);
@@ -158,6 +186,9 @@ main(int argc, char *argv[])
 		if (is_any_team_registered(cup->teams)) {
 			printf("2 → Edit\n");
 			options[1] = 'e';
+
+			puts("3 → Delete");
+			options[2] = 'd';
 		}
 		
 		printf("6 → Show the teams\n");
@@ -179,6 +210,7 @@ main(int argc, char *argv[])
 				edit(cup);
 				break;
 			case 'd':
+				delete(cup);
 				break;
 			case 's':
 				break;
