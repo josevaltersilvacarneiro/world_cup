@@ -35,7 +35,7 @@ delete_team(TEAM *first_team, GAME *first_game)
 }
 
 void
-delete_game(GAME *first_game)
+delete_game(TEAM, *first_team, GAME *first_game)
 {
 	TEAM *team_one;
 	TEAM *team_two;
