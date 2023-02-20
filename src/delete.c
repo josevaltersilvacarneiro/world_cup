@@ -37,7 +37,7 @@ delete_team(TEAM *first_team, GAME *first_game)
 	before_team = convert_to_before_team_ptr(first_team, get_team(first_team, true));
 	team	    = before_team->next;
 
-	for (GAME *game_ptr = first_game; game_ptr != NULL; game_ptr = game_ptr->next)
+	for (GAME *game_ptr = first_game; game_ptr->next != NULL; game_ptr = game_ptr->next)
 		if (game_ptr->next->team_one == team->next || game_ptr->next->team_two == team->next)
 			real_delete_game(game_ptr); /* before */
 
