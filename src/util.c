@@ -320,6 +320,14 @@ are_all_games_registered(TEAM *teams, GAME *games, char groups[])
 }
 
 bool
+is_every_registered(TEAM *first_team, GAME *first_game, char groups[])
+{
+	return
+		are_all_teams_registered(first_team) &&
+		are_all_games_registered(first_team, first_game, groups);
+}
+
+bool
 is_any_game_registered(GAME *first_game)
 {
 	return first_game->next != NULL;
