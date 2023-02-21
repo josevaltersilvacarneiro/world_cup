@@ -244,8 +244,10 @@ main(int argc, char *argv[])
 		char options[AMOUNT_OF_OPTIONS];
 		char option;
 
-		printf("1 → Register\n");
-		options[0] = 'r';
+		if (!is_every_registered(cup->teams, cup->games, groups)) {
+			printf("1 → Register\n");
+			options[0] = 'r';
+		}
 
 		if (is_any_team_registered(cup->teams)) {
 			printf("2 → Edit\n");
