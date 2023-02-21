@@ -31,6 +31,7 @@ extern bool are_all_games_registered(TEAM *teams, GAME *games, char groups[]);
 
 extern bool is_any_game_registered(GAME *first_game);
 extern bool is_any_team_registered(TEAM *first_team);
+extern bool is_every_registered(TEAM *first_team, GAME *first_game, char groups[]);
 
 extern TEAM *regist_teams(TEAM *teams);
 extern GAME *regist_games(const TEAM *teams, GAME *games);
@@ -41,7 +42,15 @@ extern void edit_game(TEAM *first_team, GAME *first_game);
 extern void delete_team(TEAM *first_team, GAME *first_game);
 extern void delete_game(TEAM *first_team, GAME *first_game);
 
+extern float group_goal_average(GAME *first_game, char group);
+extern float goal_average(GAME *first_game);
+extern GAME *most_goals_in_a_game(GAME *first_game);
+
 extern void sort_classification(TEAM *first_team);
+
+void print_group_goal_average(CUP *cup);
+void print_goal_average(CUP *cup);
+void print_team_with_most_goals_in_the_cup(CUP *cup);
 
 void
 print_hyphens(void)
@@ -138,6 +147,61 @@ delete(CUP *cup)
 }
 
 void
+print_statistics(CUP *cup)
+{
+	print_hyphens();
+	puts("Statistics");
+	print_hyphens();
+
+	print_group_goal_average(cup);
+	print_goal_average(cup);
+	print_team_with_most_goals_in_the_cup(cup);
+
+	print_hyphens();
+}
+
+void
+print_group_goal_average(CUP *cup)
+{
+	float group_goal_aver;
+
+	puts("# Group Goal Average");
+
+	for (register int i = 0; i < AMOUNT_OF_GROUPS; i++) {
+		group_goal_aver = group_goal_average(cup->games, groups[i]); /* See statistics.c */
+
+		printf("%c\t%.1f\n", groups[i], group_goal_aver);
+	}
+
+	puts("");
+}
+
+void
+print_goal_average(CUP *cup)
+{
+	float goal_aver;
+
+	goal_aver = goal_average(cup->games);
+
+	printf("# Goal Average: %f", goal_aver);
+}
+
+void
+print_team_with_most_goals_in_the_cup(CUP *cup)
+{
+	GAME *game = most_goals_in_a_game(cup->games);
+
+	printf("# More goals in a match: %s\n",
+		(game->team_one_goals > game->team_two_goals) ? game->team_one->name : game->team_two->name
+	      );
+
+	printf("%s\n", game->place);
+	printf("%s %u vs %u %s",
+		game->team_one->name, game->team_one_goals, game->team_two_goals, game->team_one->name
+	      );
+}
+
+void
 print_teams(CUP *cup)
 {
 	sort_classification(cup->teams);
@@ -190,6 +254,14 @@ main(int argc, char *argv[])
 			puts("3 → Delete");
 			options[2] = 'd';
 		}
+
+		if (is_every_registered(cup->teams, cup->games, groups)) {
+			puts("4 → Statistic");
+			puts("5 → Release of the next phase games");
+
+			options[3] = 's';
+			options[4] = 'n';
+		}
 		
 		printf("6 → Show the teams\n");
 		options[5] = 'p';
@@ -213,6 +285,7 @@ main(int argc, char *argv[])
 				delete(cup);
 				break;
 			case 's':
+				print_statistics(cup);
 				break;
 			case 'n':
 				break;
