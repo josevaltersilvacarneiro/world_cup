@@ -3,6 +3,8 @@
  * for returning the statistical data.
  */
 
+#include <stddef.h>
+
 #ifndef config_h
 #include "config.h"
 #endif
