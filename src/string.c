@@ -26,6 +26,26 @@ start_string(void)
 	last_string->next = NULL;
 }
 
+struct string
+*store_string(String message, unsigned int message_length)
+{
+	struct string *new_string;
+
+	/* Storing */
+
+	new_string = calloc(1, sizeof(struct string *));
+	new_string->str = calloc(message_length + 1, sizeof(char));
+	strncpy(new_string->str, message, message_length + 1);
+	new_string->references = 1;
+
+	last_string->next = new_string;  /* The penultimate string receives the address for the next string */
+
+	last_string = last_string->next; /* The last string now is the new string */
+	last_string->next = NULL;
+
+	return new_string;
+}
+
 String
 input(const String message)
 {
@@ -50,17 +70,19 @@ input(const String message)
 	amount_of_letters--;
 	string[amount_of_letters] = '\0';
 
-	/* Storing */
+	/* Adding */
 
-	new_string = calloc(1, sizeof(struct string *));
-	new_string->str = calloc(amount_of_letters + 1, sizeof(char));
-	strncpy(new_string->str, string, amount_of_letters + 1);
-	new_string->references = 1;
+	new_string = store_string(string, amount_of_letters);
 
-	last_string->next = new_string;  /* The penultimate string receives the address for the next string */
+	return new_string->str;
+}
 
-	last_string = last_string->next; /* The last string now is the new string */
-	last_string->next = NULL;
+String
+str(const String string)
+{
+	struct string *new_string;
+
+	new_string = store_string(string, strlen(string));
 
 	return new_string->str;
 }
