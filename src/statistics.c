@@ -27,7 +27,7 @@ group_goal_average(GAME *first_game, char group)
 
 	/* ZeroDivisionError */
 
-	return (num_of_games == 0) ? num_of_games : number_of_goals_in_the_group(first_game, group) / num_of_games;
+	return (num_of_games == 0) ? num_of_games : num_of_goals / num_of_games;
 }
 
 float
