@@ -93,33 +93,31 @@ CUP
 
 		/* TEAM */
 
-		buf_line[0] = '\0';
+		fscanf(fp, "%[^\n]\n", buf_line);
 
-		fscanf(fp, "# teams\n");
 		for (; strcmp(buf_line, "# games"); ) {
-			fscanf(fp, "{\n");
+			fscanf(fp, "%[^\n]", buf_line);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			group = *str(buf_line);
 			
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			name = str(buf_line);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			pt = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			gs = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			gc = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			gd = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, "}\n");
-
-			fscanf(fp, "%s", buf_line);
+			fscanf(fp, "%s\n", buf_line);
+			fscanf(fp, "%[^\n]\n", buf_line);
 
 			/* Adding */
 
@@ -129,27 +127,27 @@ CUP
 		/* GAME */
 
 		for (; !feof(fp); ) {
-			fscanf(fp, "{\n");
+			fscanf(fp, "%[^\n]", buf_line);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			team_one = convert_to_team_ptr(cup->teams, buf_line);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			team_two = convert_to_team_ptr(cup->teams, buf_line);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			team_one_goals = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			team_two_goals = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			date = strtoul(buf_line, &eptr, 10);
 
-			fscanf(fp, ".*: %s", buf_line);
+			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			place = str(buf_line);
 
-			fscanf(fp, "}\n");
+			fscanf(fp, "\n%[^\n]", buf_line);
 
 			/* Adding */
 
