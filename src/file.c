@@ -95,9 +95,7 @@ CUP
 
 		fscanf(fp, "%[^\n]\n", buf_line);
 
-		for (; strcmp(buf_line, "# games"); ) {
-			fscanf(fp, "%[^\n]", buf_line);
-
+		for (fscanf(fp, "%[^\n]", buf_line); strcmp(buf_line, "# games"); ) {
 			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			group = *str(buf_line);
 			
