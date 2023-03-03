@@ -4,9 +4,7 @@
 #include "config.h"
 #endif
 
-extern void register_game(GAME *game);
-
-/* See util.c */
+extern void register_game(GAME *game); /* See rank.c */
 
 TEAM
 *add_team(
