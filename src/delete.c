@@ -81,10 +81,22 @@ delete_game(TEAM **first_team, GAME **first_game)
 
 		before_game = find_before_game(first_game, team_one, team_two);
 	
-	if (before_game == NULL) { /* The game hasn't been registered yet */
-		puts("Invalid entry");
-		goto del_gam;
-	}
+	if (before_game == NULL) { /* There are two possibilities */
+		if (
+			(*first_game)->team_one == team_one ||
+			(*first_game)->team_two == team_one
+		   ) {		  /* 1 - The game is the head of the list */
+			GAME *old_first_game = *first_game;
 
-	real_delete_game(before_game);
+			unscramble_game(game);
+
+			*first_game = (*first_game)->next;
+			free(old_first_game);
+		} else {	  /* 2 - The game hasn't been registered yet */
+			puts("Invalid entry");
+			goto del_gam;
+		}
+	} else {
+		real_delete_game(before_game);
+	}
 }
