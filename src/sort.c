@@ -6,12 +6,12 @@
 #include "config.h"
 #endif /* config_h */
 
-extern size_t number_of_teams_registered(TEAM *teams);
+extern size_t number_of_teams_registered(TEAM **first_team);
 
-static TEAM *get_team_in_position(TEAM *first_team, size_t position);
+static TEAM *get_team_in_position(TEAM **first_team, size_t position);
 
 static TEAM
-*copy_team(TEAM *first_team, size_t position)
+*copy_team(TEAM **first_team, size_t position)
 {
 	TEAM *team;
 	TEAM *team_cpy;
@@ -36,19 +36,18 @@ static TEAM
 }
 
 static TEAM
-*get_team_in_position(TEAM *first_team, size_t position)
+*get_team_in_position(TEAM **first_team, size_t position)
 {
-	size_t pos = 0;
+	TEAM *team_ptr;
+	size_t pos = -1;
 
-	for (TEAM *team_ptr = first_team->next; team_ptr != NULL; team_ptr = team_ptr->next, pos += 1)
-		if (pos == position)
-			return team_ptr;
+	for (team_ptr = *first_team; team_ptr != NULL && ++pos != position; team_ptr = team_ptr->next) ;
 
-	return NULL;
+	return team_ptr;
 }
 
 static void
-switch_teams(TEAM *first_team, TEAM *team_one, TEAM *team_two)
+switch_teams(TEAM *team_one, TEAM *team_two)
 {
 	team_one->name = team_two->name;
 	team_one->pt   = team_two->pt;
@@ -58,7 +57,7 @@ switch_teams(TEAM *first_team, TEAM *team_one, TEAM *team_two)
 }
 
 void
-sort_classification(TEAM *first_team)
+sort_classification(TEAM **first_team)
 {
 	size_t length = number_of_teams_registered(first_team);
 	register int j;
@@ -73,18 +72,16 @@ sort_classification(TEAM *first_team)
 	while (h > 0) {
 		for (register int i = h; i < length; i++) {
 			key = copy_team(first_team, i); /* alloc */
-			j = i;
+			j   = i;
 			
 			while (j >= h && get_team_in_position(first_team, j - h)->pt < key->pt) {
 				switch_teams(
-						first_team,
 						get_team_in_position(first_team, j),
 						get_team_in_position(first_team, j - h)
 					    );
 				j -= h;
 			}
 			switch_teams(
-					first_team,
 					get_team_in_position(first_team, j),
 					key
 				    );
