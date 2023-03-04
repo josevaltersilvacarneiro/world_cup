@@ -13,10 +13,10 @@
 
 extern String str(const String string);
 
-extern TEAM *convert_to_team_ptr(const TEAM *first_team, const String team_name);
+extern TEAM *convert_to_team_ptr(const TEAM **first_team, const String team_name);
 
 extern TEAM *add_team(
-			TEAM *first_team,
+			TEAM **first_team,
 			const char group,
 			const String name,
 			const unsigned int pt,
@@ -26,8 +26,8 @@ extern TEAM *add_team(
 		     );
 
 extern GAME *add_game(
-			const TEAM *first_team,
-			GAME *first_game,
+			const TEAM **first_team,
+			GAME **first_game,
 			TEAM *team_one,
 			TEAM *team_two,
 			const unsigned short team_one_goals,
@@ -37,8 +37,8 @@ extern GAME *add_game(
 		     );
 
 
-void free_teams(TEAM *first_team);
-void free_games(GAME *first_game);
+void free_teams(TEAM **first_team);
+void free_games(GAME **first_game);
 
 bool
 does_file_exist(const String filename)
@@ -50,21 +50,15 @@ CUP
 *get_data(void)
 {
 	FILE *fp;
-	CUP *cup;
+	CUP  *cup;
 
-	if (does_file_exist(FILENAME))
-		fp = fopen(FILENAME, "r");
-	else
-		fp = NULL;
+	fp = does_file_exist(FILENAME) ? fopen(FILENAME, "r") : NULL;
 
 	cup = calloc(1, sizeof(CUP));
 
-	cup->teams = calloc(1, sizeof(TEAM));
-	cup->games = calloc(1, sizeof(GAME));
+	cup->first_team = NULL;
+	cup->first_game = NULL;
 
-	cup->teams->next = NULL;
-	cup->games->next = NULL;
-	
 	if (fp != NULL) {
 		/* The file was opened for reading successfully */
 
@@ -119,7 +113,7 @@ CUP
 
 			/* Adding */
 
-			cup->teams = add_team(cup->teams, group, name, pt, gs, gc, gd);
+			add_team(&cup->first_team, group, name, pt, gs, gc, gd);
 		}
 		
 		/* GAME */
@@ -149,16 +143,16 @@ CUP
 
 			/* Adding */
 
-			cup->games = add_game(
-						cup->teams,
-						cup->games,
-						team_one,
-						team_two,
-						team_one_goals,
-						team_two_goals,
-						date,
-						place
-					     );
+			add_game(
+				&cup->first_team,
+				&cup->first_game,
+				team_one,
+				team_two,
+				team_one_goals,
+				team_two_goals,
+				date,
+				place
+				);
 		}
 
 		if(fclose(fp))
@@ -179,7 +173,7 @@ push_data(CUP *cup)
 		printf("There is an error: could not open %s file in write mode\n", FILENAME);
 	else {
 		fprintf(fp, "# teams\n");
-		for (TEAM *team_ptr = cup->teams->next; team_ptr != NULL; team_ptr = team_ptr->next) {
+		for (TEAM *team_ptr = cup->first_team; team_ptr != NULL; team_ptr = team_ptr->next) {
 			fprintf(fp, "{\n");
 			
 			fprintf(fp, "\tgroup : %c\n", team_ptr->group);
@@ -195,7 +189,7 @@ push_data(CUP *cup)
 		}
 
 		fprintf(fp, "# games\n");
-		for (GAME *game_ptr = cup->games->next; game_ptr != NULL; game_ptr = game_ptr->next) {
+		for (GAME *game_ptr = cup->first_game; game_ptr != NULL; game_ptr = game_ptr->next) {
 			fprintf(fp, "{\n");
 			
 			fprintf(fp, "\tteam_one : %s\n", game_ptr->team_one->name);
@@ -211,33 +205,33 @@ push_data(CUP *cup)
 	}
 
 	if (fclose(fp))
-		printf("There is an error and the data were lost\n");
+		puts("There is an error and the data were lost");
 
-	free_games(cup->games);
-	free_teams(cup->teams);
+	free_games(&cup->first_game);
+	free_teams(&cup->first_team);
 	free(cup);
 }
 
 void
-free_teams(TEAM *first_team)
+free_teams(TEAM **first_team)
 {
 	TEAM *next;
 
-	for (; first_team != NULL; ) {
-		next = first_team->next;
-		free(first_team);
-		first_team = next;
+	for (; *first_team != NULL; ) {
+		next = (*first_team)->next;
+		free(*first_team);
+		*first_team = next;
 	}
 }
 
 void
-free_games(GAME *first_game)
+free_games(GAME **first_game)
 {
 	GAME *next;
 
-	for (; first_game != NULL; ) {
-		next = first_game->next;
-		free(first_game);
-		first_game = next;
+	for (; *first_game != NULL; ) {
+		next = (*first_game)->next;
+		free(*first_game);
+		*first_game = next;
 	}
 }
