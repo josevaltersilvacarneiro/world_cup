@@ -10,7 +10,7 @@
 #endif
 
 float
-group_goal_average(GAME *first_game, char group)
+group_goal_average(GAME **first_game, char group)
 {
 	/* Reference */
 	/* https://pt.wikipedia.org/wiki/M%C3%A9dia_aritm%C3%A9tica */
@@ -20,7 +20,7 @@ group_goal_average(GAME *first_game, char group)
 	num_of_goals = 0;
 	num_of_games = 0;
 
-	for (GAME *game_ptr = first_game; game_ptr != NULL; game_ptr = game_ptr->next) {
+	for (GAME *game_ptr = *first_game; game_ptr != NULL; game_ptr = game_ptr->next) {
 		num_of_goals += game_ptr->team_one_goals + game_ptr->team_two_goals;
 		num_of_games++;
 	}
@@ -31,7 +31,7 @@ group_goal_average(GAME *first_game, char group)
 }
 
 float
-goal_average(GAME *first_game)
+goal_average(GAME **first_game)
 {
 	/*
 	 * This function returns the average
@@ -49,7 +49,7 @@ goal_average(GAME *first_game)
 	num_of_goals = 0;
 	num_of_games = 0;
 
-	for (GAME *game_ptr = first_game->next; game_ptr != NULL; game_ptr = game_ptr->next) {
+	for (GAME *game_ptr = *first_game; game_ptr != NULL; game_ptr = game_ptr->next) {
 		num_of_goals += game_ptr->team_one_goals + game_ptr->team_two_goals;
 		num_of_games++;
 	}
@@ -60,9 +60,9 @@ goal_average(GAME *first_game)
 } 
 
 GAME
-*most_goals_in_a_game(GAME *first_game)
+*most_goals_in_a_game(GAME **first_game)
 {
-	GAME *game = first_game->next;
+	GAME *game = *first_game;
 
 	for (GAME *game_ptr = game; game_ptr != NULL; game_ptr = game_ptr->next)
 		if (
