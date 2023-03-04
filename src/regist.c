@@ -8,10 +8,10 @@
 
 extern char   groups[];
 
-extern TEAM  *convert_to_team_ptr(const TEAM **first_team, const String team_name);
+extern TEAM  *convert_to_team_ptr(TEAM **first_team, const String team_name);
 
 extern char   get_group(char groups[]);
-extern String get_team(const TEAM **first_team, bool is_in);
+extern String get_team(TEAM **first_team, bool is_in);
 extern size_t get_date();
 extern String get_place();
 
@@ -26,7 +26,7 @@ extern TEAM  *add_team(
 		    );
 
 extern GAME  *add_game(
-			const TEAM **first_team,
+			TEAM **first_team,
 			GAME **first_game,
 			TEAM *team_one,
 			TEAM *team_two,
@@ -42,8 +42,8 @@ extern size_t number_of_teams_to_register(TEAM **first_team);
 
 extern size_t get_amount_of_registered_games(GAME **first_game, char group);
 extern size_t number_of_games_registered(GAME **first_game);
-extern size_t number_of_games_to_register(const TEAM **first_team, GAME **first_game, char groups[]);
-extern size_t maximum_amount_of_registered_games_group(const TEAM **first_team, char group);
+extern size_t number_of_games_to_register(TEAM **first_team, GAME **first_game, char groups[]);
+extern size_t maximum_amount_of_registered_games_group(TEAM **first_team, char group);
 
 extern size_t get_amount(const char *message);
 
@@ -64,7 +64,7 @@ TEAM
 }
 
 GAME
-*regist_game(const TEAM **first_team, GAME **first_game)
+*regist_game(TEAM **first_team, GAME **first_game)
 {
 	size_t maximum_amount_of_games;
 	
@@ -140,7 +140,7 @@ TEAM
 }
 
 GAME
-*regist_games(const TEAM **first_team, GAME **first_game)
+*regist_games(TEAM **first_team, GAME **first_game)
 {
 	size_t max_amount, amount_of_games;
 

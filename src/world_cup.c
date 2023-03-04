@@ -34,7 +34,7 @@ extern bool is_any_team_registered(TEAM **first_team);
 extern bool is_every_registered(TEAM **first_team, GAME **first_game, char groups[]);
 
 extern TEAM *regist_teams(TEAM **first_team);
-extern GAME *regist_games(const TEAM **first_team, GAME **first_game);
+extern GAME *regist_games(TEAM **first_team, GAME **first_game);
 
 extern void edit_team(TEAM **first_team);
 extern void edit_game(TEAM **first_team, GAME **first_game);
@@ -73,12 +73,12 @@ regist(CUP *cup)
 	char options[2];
 	char option;
 
-	if (!are_all_teams_registered(cup->teams)) {
+	if (!are_all_teams_registered(&cup->first_team)) {
 		printf("1 → Register teams\n");
 		options[0] = 't';
 	}
 
-	if (!are_all_games_registered(cup->teams, cup->games, groups)) {
+	if (!are_all_games_registered(&cup->first_team, &cup->first_game, groups)) {
 		printf("2 → Register games\n");
 		options[1] = 'g';
 	}

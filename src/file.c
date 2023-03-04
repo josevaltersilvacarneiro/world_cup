@@ -13,7 +13,7 @@
 
 extern String str(const String string);
 
-extern TEAM *convert_to_team_ptr(const TEAM **first_team, const String team_name);
+extern TEAM *convert_to_team_ptr(TEAM **first_team, const String team_name);
 
 extern TEAM *add_team(
 			TEAM **first_team,
@@ -26,7 +26,7 @@ extern TEAM *add_team(
 		     );
 
 extern GAME *add_game(
-			const TEAM **first_team,
+			TEAM **first_team,
 			GAME **first_game,
 			TEAM *team_one,
 			TEAM *team_two,
@@ -122,10 +122,10 @@ CUP
 			fscanf(fp, "%[^\n]", buf_line);
 
 			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
-			team_one = convert_to_team_ptr(cup->teams, buf_line);
+			team_one = convert_to_team_ptr(&cup->first_team, buf_line);
 
 			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
-			team_two = convert_to_team_ptr(cup->teams, buf_line);
+			team_two = convert_to_team_ptr(&cup->first_team, buf_line);
 
 			fscanf(fp, "%[^:] : %s", buf_line, buf_line);
 			team_one_goals = strtoul(buf_line, &eptr, 10);

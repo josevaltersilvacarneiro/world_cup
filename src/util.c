@@ -9,7 +9,7 @@
 /* Conversion functions */
 
 TEAM
-*convert_to_team_ptr(const TEAM **first_team, const String team_name)
+*convert_to_team_ptr(TEAM **first_team, const String team_name)
 {
 	/*
 	 * This function receives two parameters: a linked list of
@@ -147,7 +147,7 @@ get_group(char groups[])
 }
 
 String
-get_team(const TEAM **first_team, bool is_in)
+get_team(TEAM **first_team, bool is_in)
 {
 	String team;
 	TEAM  *team_ptr;
@@ -192,7 +192,7 @@ get_place(void)
 }
 
 size_t
-maximum_amount_of_registered_games_group(const TEAM **first_team, char group)
+maximum_amount_of_registered_games_group(TEAM **first_team, char group)
 {
 	/* Fundamental Counting Theorem */
 
@@ -202,7 +202,7 @@ maximum_amount_of_registered_games_group(const TEAM **first_team, char group)
 }
 
 size_t
-maximum_amount_of_registered_games(const TEAM **first_team, char groups[])
+maximum_amount_of_registered_games(TEAM **first_team, char groups[])
 {
 	/*
 	 * Using a repetiton loop, all groups looped.
@@ -223,7 +223,7 @@ maximum_amount_of_registered_games(const TEAM **first_team, char groups[])
 }
 
 size_t
-get_amount_of_registered_teams(const TEAM **first_team, char group)
+get_amount_of_registered_teams(TEAM **first_team, char group)
 {
 	size_t amount_of_registered_teams = 0;
 
@@ -292,7 +292,7 @@ number_of_teams_to_register(TEAM **first_team)
 }
 
 size_t
-number_of_games_to_register(const TEAM **first_team, GAME **first_game, char groups[])
+number_of_games_to_register(TEAM **first_team, GAME **first_game, char groups[])
 {
 	/*
 	 * The amount of games that can be added is
@@ -336,7 +336,7 @@ is_any_game_registered(GAME **first_game)
 }
 
 bool
-is_any_team_registered(TEAM *first_team)
+is_any_team_registered(TEAM **first_team)
 {
 	return *first_team != NULL;
 }

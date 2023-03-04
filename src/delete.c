@@ -39,13 +39,13 @@ delete_team(TEAM **first_team, GAME **first_game)
 	if (before_team != NULL) {
 		team = before_team->next;
 
-		if (*first_game != NULL) {
-			GAME *before_game == NULL;
+		if ((*first_game) != NULL) {
+			GAME *before_game = NULL;
 
 			for (GAME *game_ptr = *first_game; game_ptr->next != NULL; game_ptr = game_ptr->next) {
 				if (game_ptr->team_one == team || game_ptr->team_two == team) {
 					if (before_game == NULL) {
-						unscramble_game(game);
+						unscramble_game(game_ptr);
 						
 						free(*first_game);
 						*first_game = NULL;
@@ -88,7 +88,7 @@ delete_game(TEAM **first_team, GAME **first_game)
 		   ) {		  /* 1 - The game is the head of the list */
 			GAME *old_first_game = *first_game;
 
-			unscramble_game(game);
+			unscramble_game(*first_game);
 
 			*first_game = (*first_game)->next;
 			free(old_first_game);

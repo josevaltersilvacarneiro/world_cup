@@ -10,7 +10,7 @@
 #include "config.h"
 #endif
 
-extern TEAM *convert_to_team_ptr(const TEAM **first_team, const String team_name);
+extern TEAM *convert_to_team_ptr(TEAM **first_team, const String team_name);
 extern GAME *find_game(GAME **first_game, const TEAM *team_one, const TEAM *team_two);
 
 extern bool  check(const String message);
@@ -18,7 +18,7 @@ extern bool  check(const String message);
 extern char   get_option(char options[], unsigned int amount_of_options);
 extern size_t get_amount(String message);
 
-extern String get_team(const TEAM **first_team, bool is_in);
+extern String get_team(TEAM **first_team, bool is_in);
 
 extern size_t get_date(void);
 extern String get_place(void);
