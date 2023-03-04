@@ -35,8 +35,8 @@ struct game {
 typedef struct game GAME;
 
 struct cup {
-	TEAM *teams;
-	GAME *games;
+	TEAM *first_team;
+	GAME *first_game;
 };
 
 typedef struct cup CUP;
