@@ -10,15 +10,15 @@
 #include "config.h"
 #endif
 
-extern TEAM *convert_to_team_ptr(const TEAM *first_team, const String team_name);
-extern GAME *find_game(GAME *first_game, const TEAM *team_one, const TEAM *team_two);
+extern TEAM *convert_to_team_ptr(const TEAM **first_team, const String team_name);
+extern GAME *find_game(GAME **first_game, const TEAM *team_one, const TEAM *team_two);
 
 extern bool  check(const String message);
 
 extern char   get_option(char options[], unsigned int amount_of_options);
 extern size_t get_amount(String message);
 
-extern String get_team(const TEAM *first_team, bool is_in);
+extern String get_team(const TEAM **first_team, bool is_in);
 
 extern size_t get_date(void);
 extern String get_place(void);
@@ -28,11 +28,11 @@ extern String get_place(void);
 extern void register_game(GAME *game);
 extern void unscramble_game(GAME *game);
 
-void edit_team(TEAM *first_team);
-void edit_game(TEAM *first_team, GAME *first_game);
+void edit_team(TEAM **first_team);
+void edit_game(TEAM **first_team, GAME **first_game);
 
 void
-edit_team(TEAM *first_team)
+edit_team(TEAM **first_team)
 {
 	TEAM  *team;
 	String new_team_name;
@@ -54,7 +54,7 @@ edit_team(TEAM *first_team)
 }
 
 void
-edit_game(TEAM *first_team, GAME *first_game)
+edit_game(TEAM **first_team, GAME **first_game)
 {
 	TEAM *team_one;
 	TEAM *team_two;
